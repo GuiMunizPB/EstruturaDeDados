@@ -1,0 +1,341 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+a, p, h2, span{
+    color:azure;
+    text-decoration: none;
+    transition: 0.3s;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+h2 {
+  font-size: 50px;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+.sm h2, .pj h2, .hb h2 {
+  align-items: center;
+}
+
+/*NAVBAR COM TOGGLER*/
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #393E46;
+  height: 12vh ;
+}
+
+.logo .logoUfpb{
+  width: 50px;
+  height: 60px;
+  margin-left: 70px;
+  margin-right: 70px;
+  margin-top: 10px;
+}
+
+.mobile-menu {
+  display: none;
+  cursor: pointer;
+}
+
+.mobile-menu div {
+  width: 32px;
+  height: 2px;
+  background-color: azure;
+  margin: 8px;
+  transition: 0.3s;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+}
+
+.nav-list li:hover {
+  opacity: 0.7;
+}
+
+.nav-list li {
+    letter-spacing: 3px;
+    margin-left: 32px;
+}
+
+/* RESPONSIVE NAVBAR COM TOGGLER*/
+
+@media (max-width: 999px) {
+    .nav-list {
+      position: absolute;
+      top: 10vh;
+      right: 0;
+      width: 100vw;
+      height: 90vh;
+      background: #23232e;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in;
+    }
+    .nav-list li {
+      margin-left: 0;
+      opacity: 0;
+    }
+    .mobile-menu {
+      display: block;
+    }
+    .logo {
+      margin-left: 70px;
+    }
+
+}
+
+/* ANIMAÇÃO NAVBAR COM TOGGLER */ 
+
+.nav-list.active {
+  transform: translateX(0);
+}
+
+
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+  
+  .mobile-menu.active .line1 {
+    transform: rotate(-45deg) translate(-8px, 8px);
+  }
+  
+  .mobile-menu.active .line2 {
+    opacity: 0;
+  }
+  
+  .mobile-menu.active .line3 {
+    transform: rotate(45deg) translate(-5px, -7px);
+  }
+
+/* PÁGINA INICIAL */
+
+.inicio {
+  background: #222831;
+  height: 90vh;
+}
+
+.inicio .container-inicio{ 
+  display: flex;
+  flex-direction: row;
+} 
+
+.inicio .descricao {
+    font-size: 25px;
+}
+
+.inicio .conteudo-principal {
+  margin-top: 280px;
+  margin-left: 380px;
+}
+
+.inicio .line {
+  border-right: 2px solid azure;
+  color: azure;
+  margin: 0 auto;
+  white-space: nowrap;
+  text-align: center;
+  font-size: 50px;
+}
+
+
+/* ANIMAÇÃO DE ESCRITA */
+
+.inicio .type-animation {
+  animation:
+    cursor 800ms steps(28) infinite normal;
+}
+
+@keyframes cursor {
+  from {
+    border-right-color:azure;
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
+
+
+.inicio .botao {
+    background-color: #393E46;
+    border: none;
+    
+    padding: 15px 30px;
+    margin-right: 15px;
+    font-size: 20px;
+    
+    cursor: pointer;
+    transition: 1.5s ease all;
+}
+
+.inicio .botao:hover {
+    background-color: black;
+    color: white;
+}
+
+.inicio .botao i {
+    margin-right: 8px;
+}
+
+.inicio .desenho .desenho2 {
+  width: 400px;
+  height: 400px;
+  margin-top: 50px;
+}
+
+/* ANIMAÇÃO DESENHO */
+@keyframes desenhoAnimacao {
+  from {
+      top:-15px;
+  }
+  to {
+      top: 25px;
+  }
+}
+
+.inicio .desenho2 {
+  position:relative;
+  animation: desenhoAnimacao 2.1s infinite alternate-reverse linear;
+}
+
+
+/* RESPONSIVE PÁGINA INICIAL */
+
+@media (max-width:1620px) {
+  .inicio .desenho {
+    margin-top: 70px;
+    margin-left: 180px;
+  }
+  .inicio .conteudo-principal {
+    margin-top: 250px;
+    margin-left: 250px;
+  }
+  .logo {
+    margin-left: 120px;
+    margin-right: 300px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .inicio .desenho {
+    transform: translateX(200%);
+  }
+
+}
+
+@media (max-width: 999px) {
+  .inicio .conteudo-principal {
+    margin-left: 70px;
+    margin-top: 200px;
+  }
+  .logo {
+    margin-right: 120px;
+    margin-left: 40px;
+  }
+
+@media (max-width: 415px) {
+    .inicio .conteudo-principal {
+      margin-left: 60px;
+      margin-top: 180px;
+    }
+    .inicio .descricao {
+      font-size: 20px;
+    }
+    .inicio .type-animation {
+      font-size: 30px;
+    }
+    .logo {
+      margin-right: 100px;
+      margin-left: 30px;
+    }
+    .inico .botao {
+      font-size: 15px;
+    }
+  }
+
+}
+
+/* RODAPÉ */
+
+.footer {
+    width: 100%;
+    background: #393E46;
+  }
+  
+  .container-footer {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .contato-creditos {
+    font-size: 18px;
+    padding: 10px 0;
+  }
+  
+  .icones {
+    display: flex;
+    gap: 45px;
+  }
+  
+  .icones .fa-brands {
+    font-size: 40px;
+  }
+  
+  .links:hover {
+    opacity: 0.7;
+  }
+  
+  /* RESPONSIVE RODAPÉ */
+  
+  @media (max-width:999px) {
+      .contato-creditos {
+        font-size: 15px;
+      }
+      .icones {
+        display: flex;
+        gap: 40px;
+      }
+      .icones .fa-brands {
+        font-size: 35px;
+      }
+  }
+  
+  @media (max-width: 415px) {
+    .contato-creditos {
+      font-size: 12px;
+    }
+    .icones {
+      display: flex;
+      gap: 30px;
+    }
+    .icones .fa-brands {
+      font-size: 30px;
+    }
+  }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Interface Gráfica - Estrutura de Dados</title>
+    <link rel="stylesheet" href="assets/css/interface.css">
+</head>
+<body>
+    <!--NavBar com Toggler-->
+    <header>
+        <nav>
+            <div class="logo"><img class='logoUfpb' src="assets/imgs/LogoUfpb.png"></div>
+            <div class="mobile-menu"> 
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <ul class="nav-list">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="conteudo.html">Conteúdo</a></li>
+            </ul> 
+        </nav>
+    </header>
+
+    <main>
+        <div class="conteudo-wrapper">
+            <div class="barra-lateral">
+                <ul class="lista-conceitos">
+                    <li><a href="#sequencias" onclick="mostrarConceito('sequencias')">Listas Sequenciais</a></li>
+                    <li><a href="#simplesmente-encadeadas" onclick="mostrarConceito('simplesmente-encadeadas')">Listas Simplesmente Encadeadas</a></li>
+                    <li><a href="#duplamente-encadeadas" onclick="mostrarConceito('duplamente-encadeadas')">Listas Duplamente Encadeadas</a></li>
+                </ul>
+            </div>
+            <div class="conteudo-central">
+                <!-- Funcionamento da interface gráfica -->
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/mobile-navbar.js"></script>
+    <script src="https://kit.fontawesome.com/8f44d12c6b.js" crossorigin="anonymous"></script>
+     <script> 
+        // Esse é o script de mostrar conceitos que utilizei na conteudo.html adapatem para funcionar como um mostrar interface gráfica
+        function mostrarConceito(conceitoId) {
+            // Oculta todos os conceitos
+            var conceitos = document.getElementsByClassName("conceito");
+            for (var i = 0; i < conceitos.length; i++) {
+                conceitos[i].style.display = "none";
+            }
+            
+            // Mostra o conceito correspondente ao ID clicado
+            var conceito = document.getElementById(conceitoId);
+            conceito.style.display = "block";
+        }
+    </script>
+</body>
+</html>

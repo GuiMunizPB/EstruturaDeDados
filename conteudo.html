@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Conteúdo - Estrutura de Dados</title>
+    <link rel="stylesheet" href="assets/css/conteudo.css">
+</head>
+<body>
+    <!--NavBar com Toggler-->
+    <header>
+        <nav>
+            <div class="logo"><img class='logoUfpb' src="assets/imgs/LogoUfpb.png"></div>
+            <div class="mobile-menu"> 
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <ul class="nav-list">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="interface.html">Interface Gráfica</a></li>
+            </ul> 
+        </nav>
+    </header>
+
+    <main>
+        <div class="conteudo-wrapper">
+            <div class="barra-lateral">
+                <ul class="lista-conceitos">
+                    <li><a href="#sequencias" onclick="mostrarConceito('sequencias')">Listas Sequenciais</a></li>
+                    <li><a href="#simplesmente-encadeadas" onclick="mostrarConceito('simplesmente-encadeadas')">Listas Simplesmente Encadeadas</a></li>
+                    <li><a href="#duplamente-encadeadas" onclick="mostrarConceito('duplamente-encadeadas')">Listas Duplamente Encadeadas</a></li>
+                </ul>
+            </div>
+            <div class="conteudo-central">
+                <div id="sequencias" class="conceito">
+                    <h2>Listas Sequenciais</h2>
+                    <br>
+                    <ul>
+                        <li><p>As listas sequenciais são estruturas de dados amplamente utilizadas na programação.</p></li>
+                        <li><p>São compostas por elementos organizados de forma sequencial, onde cada elemento possui uma posição específica na lista.</p></li>
+                        <li><p>A manipulação de elementos em listas sequenciais é feita através de índices que indicam a posição do elemento na lista.</p></li>
+                    </ul>
+                    <p>Os elementos de uma lista sequencial podem ser de tipos de dados diferentes (inteiros, strings, objetos, etc.) e as listas sequenciais possuem um tamanho fixo que é definido no momento da criação, o que significa que não podem crescer ou encolher dinamicamente.</p>
+                    <br>
+                    <p>Operações com Listas Sequenciais</p>
+                    <ul>
+                        <li><p>Inserção de elementos: Adicionar um elemento em uma posição específica da lista.
+                        </p></li>
+                        <li><p>Remoção de elementos: Remover um elemento de uma posição específica da lista.
+                        </p></li>
+                        <li><p>Acesso a elementos: Acessar elementos individuais da lista através de seus índices.
+                        </p></li>
+                        <li><p>Pesquisa: Procurar por um elemento específico na lista e retornar sua posição ou indicar que não foi encontrado.
+                        </p></li>
+                    </ul>
+                </div>
+                <div id="simplesmente-encadeadas" class="conceito" style="display: none;">
+                    <h2>Listas Simplesmente Encadeadas</h2>
+                    <br>
+                    <ul>
+                        <li><p>As listas simplesmente encadeadas são estruturas de dados nas quais cada elemento da lista é um nó que contém um valor e uma referência ao próximo nó na lista.</p></li>
+                        <li><p>A primeira referência é chamada de "cabeça" ou "head" da lista, e a última referência é geralmente nula, indicando o final da lista.</p></li>
+                    </ul>
+                    <p>As listas simplesmente encadeadas são dinâmicas, ou seja, podem crescer ou encolher conforme necessário. Além disso, 
+                        a inserção e remoção de elementos em listas simplesmente encadeadas é um algoritmo mais eficiente na maioria dos casos, já a 
+                        busca por um elemento específico em uma lista simplesmente encadeada requer percorrer a lista de forma sequencial.</p>
+                    <br>
+                    <p>Operações com Listas Simplesmente Encadeadas</p>
+                    <ul>
+                        <li><p>Inserção de elementos: Adicionar um novo nó à lista e ajustar as referências para manter a integridade da lista.
+                        </p></li>
+                        <li><p>Remoção de elementos: Remover um nó da lista e ajustar as referências para manter a integridade da lista.
+                        </p></li>
+                        <li><p>Acesso a elementos: Percorrer a lista sequencialmente para acessar os valores dos nós.
+                        </p></li>
+                        <li><p>Pesquisa: Percorrer a lista sequencialmente em busca de um valor específico.
+                        </p></li>
+                    </ul>
+                </div>
+                <div id="duplamente-encadeadas" class="conceito" style="display: none;">
+                    <h2>Listas Duplamente Encadeadas</h2>
+                    <br>
+                    <ul>
+                        <li><p>As listas duplamente encadeadas são uma extensão das listas simplesmente encadeadas, onde cada nó possui referências tanto para o próximo quanto para o nó anterior na lista.</p></li>
+                        <li><p>Isso permite a travessia bidirecional da lista, o que pode ser útil em algumas situações.
+                        </p></li>
+                    </ul>
+                    <p>As listas duplamente encadeadas oferecem a vantagem de permitir a travessia da lista em ambas as direções (para frente e para trás). Entretanto,
+                        a inserção e remoção de elementos em listas duplamente encadeadas pode ser um pouco mais complexa do que em listas simplesmente encadeadas, devido às referências adicionais.</p>
+                    <br>
+                    <p>Operações com Listas Duplamente Encadeadas</p>
+                    <ul>
+                        <li><p>Inserção de elementos: Adicionar um novo nó à lista e ajustar as referências para manter a integridade da lista, considerando as referências anteriores e seguintes.
+                        </p></li>
+                        <li><p>Remoção de elementos: Remover um nó da lista e ajustar as referências para manter a integridade da lista, considerando as referências anteriores e seguintes.
+                        </p></li>
+                        <li><p>Acesso a elementos: Permite a travessia bidirecional da lista, o que facilita a navegação pelos elementos em ambas as direções.
+                        </p></li>
+                        <li><p>Pesquisa: Percorrer a lista sequencialmente em busca de um valor específico, usando as referências tanto para frente quanto para trás.
+                        </p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/mobile-navbar.js"></script>
+    <script src="https://kit.fontawesome.com/8f44d12c6b.js" crossorigin="anonymous"></script>
+     <script>
+        function mostrarConceito(conceitoId) {
+            // Oculta todos os conceitos
+            var conceitos = document.getElementsByClassName("conceito");
+            for (var i = 0; i < conceitos.length; i++) {
+                conceitos[i].style.display = "none";
+            }
+            
+            // Mostra o conceito correspondente ao ID clicado
+            var conceito = document.getElementById(conceitoId);
+            conceito.style.display = "block";
+        }
+    </script>
+</body>
+</html>
