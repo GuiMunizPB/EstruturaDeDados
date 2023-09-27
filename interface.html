@@ -264,6 +264,17 @@
                         // Insira o valor no quadradinho correspondente à posição
                         atualizarQuadradinhos()
 
+                        var quadradinhos = document.querySelectorAll(".quadradinho");
+
+                        // Destacar o quadrado correspondente à posição
+                        var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
+                        quadradinho.classList.add("destaque2");
+
+                        // Remover o destaque após 3 segundos (3000 milissegundos)
+                        setTimeout(function () {
+                            quadradinho.classList.remove("destaque2");
+                        }, 1500);
+
                         // Limpe os campos de entrada após a adição
                         valorInput.value = "";
                         posicaoInput.value = "";
@@ -297,9 +308,20 @@
             function realizarOperacaoRemocao() {
                 var sucesso = lista.remove(document.getElementById("posicao2").value);
                 if(sucesso){
+                    var quadradinhos = document.querySelectorAll(".quadradinho");
+
+                    // Destacar o quadrado correspondente à posição
+                    var quadradinho = quadradinhos[sucesso - 1]; // -1 porque as posições da lista começam em 1
+                    quadradinho.classList.add("destaque3");
+
+                    // Remover o destaque após 3 segundos (3000 milissegundos)
+                    setTimeout(function () {
+                        quadradinho.classList.remove("destaque3");
+                    }, 1500);
+                    document.getElementById("posicao2").value = "";
                     atualizarQuadradinhos()
                     alert("removido com sucesso");
-                    document.getElementById("posicao2").value = "";
+
                 }
                 else{
                     alert("Não foi possível remover")
@@ -357,7 +379,7 @@
                         // Remover o destaque após 3 segundos (3000 milissegundos)
                         setTimeout(function () {
                             quadradinho.classList.remove("destaque");
-                        }, 3000);
+                        }, 1500);
                         
                         alert("A posição do valor procurado é: " + sucesso);
                     } else {
