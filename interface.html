@@ -30,9 +30,10 @@
         <div class="conteudo-wrapper">
             <div class="barra-lateral">
                 <ul class="lista-conceitos">
-                    <li><a href="#sequencias" onclick="mostrarConceito('sequencias')">Listas Sequenciais</a></li>
-                    <li><a href="#simplesmente-encadeadas" onclick="mostrarConceito('simplesmente-encadeadas')">Listas Simplesmente Encadeadas</a></li>
-                    <li><a href="#duplamente-encadeadas" onclick="mostrarConceito('duplamente-encadeadas')">Listas Duplamente Encadeadas</a></li>
+                    <li><a href="javascript:void(0);" onclick="mostrarConceito('sequencias')">Listas Sequenciais</a></li>
+                    <li><a href="javascript:void(0);" onclick="mostrarConceito('simplesmente-encadeadas')">Listas Simplesmente Encadeadas</a></li>
+                    <li><a href="javascript:void(0);" onclick="mostrarConceito('duplamente-encadeadas')">Listas Duplamente Encadeadas</a></li>
+
                 </ul>
             </div>
             <div class="conteudo-central">
@@ -85,61 +86,61 @@
                     
                     <div id = "simplesmente-encadeadas" class = "conceito" style="display: none;">
                         <div class="menu-interface">
-                            <img  id="minhaImagem" src="assets/imgs/plus.png" alt="Imagem">
+                            <img  id="imagemsencadeada1" src="assets/imgs/plus.png" alt="Imagem">
                         
                             <div class="funcoes-interface">
-                                <label for="valor">Digite o valor:</label>
-                                <input type="text" id="valor">
+                                <label for="valorsencadeada1">Digite o valor:</label>
+                                <input type="text" id="valorsencadeada1">
                             
-                                <label for="posicao">Posição do valor:</label>
-                                <input type="text" id="posicao">
+                                <label for="posicaosencadeada1">Posição do valor:</label>
+                                <input type="text" id="posicaosencadeada1">
                             </div>
                         
-                            <img  id="minhaImagem2" src="assets/imgs/minus.png" alt="Imagem">
+                            <img  id="imagemsencadeada2" src="assets/imgs/minus.png" alt="Imagem">
                             
                             <div class="funcoes-interface">
-                                <label for="posicao2">Posição de Remoção:</label>
-                                <input type="text" id="posicao2">
+                                <label for="posicaosencadeada2">Posição de Remoção:</label>
+                                <input type="text" id="posicaosencadeada2">
                             </div>
 
-                            <img  id="minhaImagem3" src="assets/imgs/magnifying-glass.png" alt="Imagem">
+                            <img  id="imagemsencadeada3" src="assets/imgs/magnifying-glass.png" alt="Imagem">
                             
                             <div class="funcoes-interface">
-                                <label for="valor3">Digite o valor de busca:</label>
-                                <input type="text" id="valor3">
+                                <label for="valorsencadeada3">Digite o valor de busca:</label>
+                                <input type="text" id="valorsencadeada3">
                             
-                                <label for="posicao3">Posição do valor de Busca:</label>
-                                <input type="text" id="posicao3">
+                                <label for="posicaosencadeada3">Posição do valor de Busca:</label>
+                                <input type="text" id="posicaosencadeada3">
                             </div>
                         </div>
                     </div>
                     <div id = "duplamente-encadeadas" class = "conceito" style="display: none;">
                         <div class="menu-interface">
-                            <img  id="minhaImagem" src="assets/imgs/plus.png" alt="Imagem">
+                            <img  id="imagemdencadeada1" src="assets/imgs/plus.png" alt="Imagem">
                             
                             <div class="funcoes-interface">
-                                <label for="valor">Digite o valor:</label>
-                                <input type="text" id="valor">
+                                <label for="valordencadeada1">Digite o valor:</label>
+                                <input type="text" id="valordencadeada1">
                             
-                                <label for="posicao">Posição do valor:</label>
-                                <input type="text" id="posicao">
+                                <label for="posicaodencadeada1">Posição do valor:</label>
+                                <input type="text" id="posicaodencadeada1">
                             </div>
                         
-                            <img  id="minhaImagem2" src="assets/imgs/minus.png" alt="Imagem">
+                            <img  id="imagemdencadeada2" src="assets/imgs/minus.png" alt="Imagem">
                             
                             <div class="funcoes-interface">
-                                <label for="posicao2">Posição de Remoção:</label>
-                                <input type="text" id="posicao2">
+                                <label for="posicaodencadeada2">Posição de Remoção:</label>
+                                <input type="text" id="posicaodencadeada2">
                             </div>
 
-                            <img  id="minhaImagem3" src="assets/imgs/magnifying-glass.png" alt="Imagem">
+                            <img  id="imagemdencadeada3" src="assets/imgs/magnifying-glass.png" alt="Imagem">
                             
                             <div class="funcoes-interface">
-                                <label for="valor3">Digite o valor de busca:</label>
-                                <input type="text" id="valor3">
+                                <label for="valordencadeada3">Digite o valor de busca:</label>
+                                <input type="text" id="valordencadeada3">
                             
-                                <label for="posicao3">Posição do valor de Busca:</label>
-                                <input type="text" id="posicao3">
+                                <label for="posicaodencadeada3">Posição do valor de Busca:</label>
+                                <input type="text" id="posicaodencadeada3">
                             </div>
 
                         </div>
@@ -157,9 +158,6 @@
 
             function alterarTamanhoLista() {
             
-                   
-            
-                   
             const tamanho = parseInt(document.getElementById("tamanhoLista").value);
       
       
@@ -408,19 +406,22 @@
 
 
 
-
-        // Esse é o script de mostrar conceitos que utilizei na conteudo.html adapatem para funcionar como um mostrar interface gráfica
-        function mostrarConceito(conceitoId) {
-            // Oculta todos os conceitos
-            var conceitos = document.getElementsByClassName("conceito");
-            for (var i = 0; i < conceitos.length; i++) {
-                conceitos[i].style.display = "none";
+            function mostrarConceito(conceitoId) {
+                // Oculta todos os conceitos
+                var conceitos = document.querySelectorAll(".conceito");
+                for (var i = 0; i < conceitos.length; i++) {
+                    conceitos[i].style.display = "none";
+                }
+                
+                // Mostra o conceito correspondente ao ID clicado
+                var conceito = document.getElementById(conceitoId);
+                if (conceito) {
+                    conceito.style.display = "block";
+                } else {
+                    console.error("Elemento não encontrado para o ID: " + conceitoId);
+                }
             }
-            
-            // Mostra o conceito correspondente ao ID clicado
-            var conceito = document.getElementById(conceitoId);
-            conceito.style.display = "block";
-        }
+
 
     </script>
 </body>
