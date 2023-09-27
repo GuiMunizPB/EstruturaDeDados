@@ -162,7 +162,6 @@
                    
             const tamanho = parseInt(document.getElementById("tamanhoLista").value);
       
-            if (!isNaN(tamanho) && tamanho >= 1) {
       
             if (!isNaN(tamanho) && tamanho >= 1) {
                  // Remova os quadradinhos existentes, se houver algum
@@ -178,8 +177,6 @@
                     quadradinhosContainer.appendChild(quadradinho);
                 }
             
-               lista = new ListaSeq(tamanho); 
-               alert("Tamanho da lista alterado para " + tamanho);
                           
             
                lista = new ListaSeq(tamanho); 
@@ -196,21 +193,12 @@
                     quadradinho.className = "quadradinho";
                     quadradinhosContainer.appendChild(quadradinho);
                 }
-                var quadradinhosContainer = document.getElementById("quadradinhos-container");
-                quadradinhosContainer.innerHTML = "";
-
-                
-                // Crie um número específico de quadradinhos com base no tamanho
-                for (var i = 0; i < tamanho + 100; i++) {
-                    var quadradinho = document.createElement("div");
-                    quadradinho.className = "quadradinho";
-                    quadradinhosContainer.appendChild(quadradinho);
-                }
+               
                 alert("lista sem tamanho");
-                lista = new ListaSeq(tamanho + 100);
+                
                 lista = new ListaSeq(tamanho + 100);
             }
-            atualizarQuadradinhos();
+            
             atualizarQuadradinhos();
             }
 
