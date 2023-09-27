@@ -11,8 +11,10 @@
     <!--NavBar com Toggler-->
     <header>
         <nav>
-            <div class="logo"><img class='logoUfpb' src="assets/imgs/LogoUfpb.png"></div>
+            <div class="logo"><img class='logoUfpb' src="assets/imgs/LogoUfpb.png" alt="Logo da Universidade Federal da Paraíba"></div>
+
             <div class="mobile-menu"> 
+
                 <div class="line1"></div>
                 <div class="line2"></div>
                 <div class="line3"></div>
@@ -37,35 +39,48 @@
                     <!-- Funcionamento da interface gráfica -->
                     <!-- Primeiro conjunto de elementos -->
                     <div id = "sequencias" class ="conceito">
-                        <label for="tamanhoLista" style="position: absolute; top: 110px; left: 250px;">Tamanho da Lista: </label>
-                        <input type="number" id="tamanhoLista" min="1" max="30" value="20" style="width: 100px; height: 20px; position: absolute; top: 135px; left: 250px;">
-                        <button onclick="alterarTamanhoLista()" style="width: 100px; height: 20px; position: absolute; top: 170px; left: 250px;">Confirmar </button>
-
-                        <img id="minhaImagem" src="assets/imgs/plus.png" alt="Imagem" style="width: 100px; height: 100px; position: relative; left: 180px;"/>
-
-                        <label for="valor" style="position: absolute; top: 120px; left: 550px;">Digite o valor:</label>
-                        <input type="text" id="valor" style="width: 100px; height: 20px; position: absolute; top: 150px; left: 550px;" />
+                        <div class="menu-interface">
+                            <div class="tamanho-lista">
+                                <label for="tamanhoLista">Tamanho da Lista:</label>
+                                <input type="number" id="tamanhoLista" min="1" max="30" value="20">
+                                <button onclick="alterarTamanhoLista()">Confirmar</button>
+                            </div>
                         
-                        <label for="posicao" style="position: absolute; top: 180px; left: 550px;">Posição do valor:</label>
-                        <input type="text" id="posicao" style="width: 100px; height: 20px; position: absolute; top: 210px; left: 550px;" />
-
-                        <img id="minhaImagem2" src="assets/imgs/minus.png" alt="Imagem" style="width: 100px; height: 100px; position: absolute; top: 120px; left: 750px;"/>
+                            <img  id="minhaImagem" src="assets/imgs/plus.png" alt="Imagem">
+                            
+                            <div class="funcoes-interface">
+                                <label for="valor">Digite o valor:</label>
+                                <input type="text" id="valor">
+                            
+                                <label for="posicao">Posição do valor:</label>
+                                <input type="text" id="posicao">
+                            </div>
                         
-                        <label for="posicao2" style="position: absolute; top: 150px; left: 890px;">Posição de Remoção:</label>
-                        <input type="text" id="posicao2" style="width: 100px; height: 20px; position: absolute; top: 180px; left: 890px;" />
-                    
-                        <img id="minhaImagem3" src="assets/imgs/magnifying-glass.png" alt="Imagem" style="width: 100px; height: 100px; position: absolute; top: 120px; left: 1080px;"/>
+                            <img  id="minhaImagem2" src="assets/imgs/minus.png" alt="Imagem">
+                            
+                            <div class="funcoes-interface">
+                                <label for="posicao2">Posição de Remoção:</label>
+                                <input type="text" id="posicao2">
+                            </div>
 
-                        <label for="valor3" style="position: absolute; top: 120px; left: 1200px;">Digite o valor de busca:</label>
-                        <input type="text" id="valor3" style="width: 100px; height: 20px; position: absolute; top: 150px; left: 1200px;" />
-                        
-                        <label for="posicao3" style="position: absolute; top: 180px; left: 1200px;">Posição do valor de Busca:</label>
-                        <input type="text" id="posicao3" style="width: 100px; height: 20px; position: absolute; top: 210px; left: 1200px;" />
+                            <img  id="minhaImagem3" src="assets/imgs/magnifying-glass.png" alt="Imagem">
+                            
+                            <div class="funcoes-interface">
+                                <label for="valor3">Digite o valor de busca:</label>
+                                <input type="text" id="valor3">
+                            
+                                <label for="posicao3">Posição do valor de Busca:</label>
+                                <input type="text" id="posicao3">
+                            </div>
 
-                        <div id="quadradinhos-container" class="quadradinhos-container"></div>
-
+                            
 
                         </div>
+
+                        <div id="quadradinhos-container" class="quadradinhos-container"></div> 
+
+
+                    </div>
 
                     </div>
                     <div id = "simplesmente-encadeadas" class = "conceito" style="display: none;"></div>
@@ -79,31 +94,44 @@
     <script src="assets/js/ListaSeq.js"></script>
     
     <script> 
-            var lista = new ListaSeq();
+          var lista = new ListaSeq();
 
             function alterarTamanhoLista() {
-            const tamanho = parseInt(document.getElementById("tamanhoLista").value);
             
-            if (!isNaN(tamanho) && tamanho >= 1 && tamanho <= 30) {
-                // Crie uma nova instância da classe ListaSeq com o tamanho selecionado
+                   
+            const tamanho = parseInt(document.getElementById("tamanhoLista").value);
+      
+            if (!isNaN(tamanho) && tamanho >= 1) {
                  // Remova os quadradinhos existentes, se houver algum
                 var quadradinhosContainer = document.getElementById("quadradinhos-container");
                 quadradinhosContainer.innerHTML = "";
 
+                
                 // Crie um número específico de quadradinhos com base no tamanho
                 for (var i = 0; i < tamanho; i++) {
                     var quadradinho = document.createElement("div");
                     quadradinho.className = "quadradinho";
                     quadradinhosContainer.appendChild(quadradinho);
                 }
-
-
-                var lista = new ListaSeq(tamanho);
-                alert("Tamanho da lista alterado para " + tamanho);
+            
+               lista = new ListaSeq(tamanho); 
+               alert("Tamanho da lista alterado para " + tamanho);
+                          
             } else {
-                var lista = new ListaSeq();
+                var quadradinhosContainer = document.getElementById("quadradinhos-container");
+                quadradinhosContainer.innerHTML = "";
+
+                
+                // Crie um número específico de quadradinhos com base no tamanho
+                for (var i = 0; i < tamanho + 100; i++) {
+                    var quadradinho = document.createElement("div");
+                    quadradinho.className = "quadradinho";
+                    quadradinhosContainer.appendChild(quadradinho);
+                }
                 alert("lista sem tamanho");
+                lista = new ListaSeq(tamanho + 100);
             }
+            atualizarQuadradinhos();
             }
 
       
@@ -112,14 +140,16 @@
             function atualizarQuadradinhos() {
                 var quadradinhos = document.querySelectorAll(".quadradinho");
 
+               
+
                 // Percorre os quadradinhos e preenche com os valores da lista
                 for (var i = 0; i < quadradinhos.length; i++) {
                     var valor = lista.elemento(i + 1); // +1 porque as posições da lista começam em 1
 
-                    // Remove qualquer número existente no quadradinho
                     while (quadradinhos[i].firstChild) {
                         quadradinhos[i].removeChild(quadradinhos[i].firstChild);
                     }
+                   
 
                     if (valor !== false) {
                         var numero = document.createElement("span");
@@ -129,6 +159,7 @@
                     }
                 }
             }
+
 
 
             //Função de Inserção
