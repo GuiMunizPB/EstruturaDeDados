@@ -250,13 +250,15 @@
                     var valor = document.getElementById("valor").value;
                     var posicao = document.getElementById("posicao").value;
 
-                    if (valor && posicao) {
+                    if (valor && posicao && !isNaN(valor) && !isNaN(posicao)) {
                         // Se ambos os campos foram preenchidos, torne a imagem clicável
                         document.getElementById("minhaImagem").addEventListener("click", realizarOperacaoAdicao);
-
+                    
+                        
                     } else {
                         // Se algum dos campos estiver vazio, remova o evento de clique da imagem
                         document.getElementById("minhaImagem").removeEventListener("click", realizarOperacaoAdicao);
+                      
                     }
                 }
 
@@ -288,10 +290,14 @@
                         }, 1500);
 
                         // Limpe os campos de entrada após a adição
-                        valorInput.value = "";
+                        valorInput.value= "";
                         posicaoInput.value = "";
+                       
                     } else {
                         alert("Não foi possível inserir");
+                        valorInput.value= "";
+                        posicaoInput.value = "";
+                       
                     }
                 }
 
@@ -312,6 +318,7 @@
                     document.getElementById("minhaImagem2").addEventListener("click", realizarOperacaoRemocao);
                 } else {
                     // Se algum dos campos estiver vazio, remova o evento de clique da imagem
+                    document.getElementById("posicao2").value = "";
                     document.getElementById("minhaImagem2").removeEventListener("click", realizarOperacaoRemocao);
                 }
             }
@@ -501,14 +508,17 @@
               var valor = document.getElementById("valor-lde").value;
               var posicao = document.getElementById("posicao-lde").value;
 
-              if (valor && posicao) {
+              if (valor && posicao && !isNaN(valor) && !isNaN(posicao)) {
                   // Se ambos os campos foram preenchidos, torne a imagem clicável
                   document.getElementById("imagemLDE1").addEventListener("click", realizarOperacaoAdicao1);
-
+           
+                    
               } else {
                   // Se algum dos campos estiver vazio, remova o evento de clique da imagem
                   document.getElementById("imagemLDE1").removeEventListener("click", realizarOperacaoAdicao1);
+                  
               }
+              
           }
 
        // Função a ser executada quando a imagem for clicada
@@ -519,8 +529,10 @@
 
           var valor = valorInput.value;
           var posicao = parseInt(posicaoInput.value);
+
+
           var sucesso = lde.insere(posicao, valor);
-             if (sucesso) {
+             if (sucesso ) {
                   alert("Inserido com sucesso");
 
                   // Insira o valor no quadradinho correspondente à posição
@@ -535,14 +547,15 @@
                   setTimeout(function () {
                       quadradinho.classList.remove("destaque2");
                   }, 1500);
-                  
-                  valorInput.value = "";
-                  posicaoInput.value = "";
+                  valorInput.value= "";
+                    posicaoInput.value = "";
+            
 
                   // Limpe os campos de entrada após a adição
                 } else {
                     alert("Não foi possível inserir");
-                }
+                   
+                            }
                 
             }
 
@@ -564,6 +577,7 @@
           } else {
               // Se algum dos campos estiver vazio, remova o evento de clique da imagem
               document.getElementById("imagemLDE2").removeEventListener("click", realizarOperacaoRemocao1);
+
           }
       }
 
@@ -720,14 +734,17 @@
           var valor = document.getElementById("valor-lse").value;
           var posicao = document.getElementById("posicao-lse").value;
 
-          if (valor && posicao) {
+          if (valor && posicao && !isNaN(valor) && !isNaN(posicao)) {
               // Se ambos os campos foram preenchidos, torne a imagem clicável
               document.getElementById("imagemsLSE1").addEventListener("click", realizarOperacaoAdicao2);
+   
 
-          } else {
-              // Se algum dos campos estiver vazio, remova o evento de clique da imagem
-              document.getElementById("imagemsLSE1").removeEventListener("click", realizarOperacaoAdicao2);
+          }else{
+            // Se algum dos campos estiver vazio, remova o evento de clique da imagem
+            document.getElementById("imagemLDE1").removeEventListener("click", realizarOperacaoAdicao1);
+                  
           }
+          
       }
 
       function realizarOperacaoAdicao2() {
@@ -736,6 +753,9 @@
 
     var valor = valorInput.value;
     var posicao = parseInt(posicaoInput.value);
+
+
+
     var sucesso = lse.insere(posicao, valor);
 
     if (sucesso) {
@@ -796,10 +816,14 @@
         }
 
         // Limpa os campos de entrada após a adição
-        valorInput.value = "";
+        valorInput.value= "";
         posicaoInput.value = "";
+        
     } else {
         alert("Não foi possível inserir");
+        valorInput.value= "";
+        posicaoInput.value = "";
+    
     }
 }
 
@@ -817,6 +841,8 @@
           document.getElementById("imagemsLSE2").addEventListener("click", realizarOperacaoRemocao2);
       } else {
           // Se algum dos campos estiver vazio, remova o evento de clique da imagem
+          document.getElementById("valor-lse").value = "";
+          document.getElementById("posicao-lse").value = "";
           document.getElementById("imagemsLSE2").removeEventListener("click", realizarOperacaoRemocao2);
       }
   }

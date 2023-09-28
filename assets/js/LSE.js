@@ -20,11 +20,11 @@ class LSE {
 
     elemento(pos) {
         if (this.vazia()) {
-            return -1;
+            return false;
         }
 
         if (pos < 1 || pos > this.tamanho()) {
-            return -1;
+            return false;
         }
 
         let aux = this.cabeca;
@@ -37,7 +37,7 @@ class LSE {
 
     posicao(dado) {
         if (this.vazia()) {
-            return -1;
+            return false;
         }
 
         let aux = this.cabeca;
@@ -50,7 +50,7 @@ class LSE {
             cont++;
         }
 
-        return -1;
+        return false;
     }
 
     insereInicioLista(valor) {
@@ -80,6 +80,10 @@ class LSE {
 
     insere(pos, valor) {
         if (this.vazia() && pos !== 1) {
+            return false;
+        }
+
+        if(!pos || !valor){
             return false;
         }
 
@@ -118,11 +122,11 @@ class LSE {
 
     remove(pos) {
         if (this.vazia()) {
-            return -1;
+            return false;
         }
 
         if (pos <= 0 || pos > this.nElementos) {
-            return -1;
+            return false;
         }
 
         if (pos === 1) {

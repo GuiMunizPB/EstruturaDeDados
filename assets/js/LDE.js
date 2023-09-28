@@ -19,11 +19,11 @@ class LDE {
         let cont = 1;
 
         if (this.vazia()) {
-            return -1;
+            return false;
         }
 
         if (pos < 1 || pos > this.tamanho) {
-            return -1;
+            return false;
         }
 
         while (cont < pos) {
@@ -39,7 +39,7 @@ class LDE {
         let aux = this.inicio;
 
         if (this.vazia()) {
-            return -1;
+            return false;
         }
 
         while (aux !== null) {
@@ -50,7 +50,7 @@ class LDE {
             cont++;
         }
 
-        return -1;
+        return false;
     }
 
     insereInicioLista(valor) {
@@ -119,6 +119,10 @@ class LDE {
             return false;
         }
 
+        if(!pos || !dado){
+            return false;
+        }
+
         if(pos > this.tamanho + 1) {
             return false;
         }
@@ -162,7 +166,7 @@ class LDE {
         }
 
         if (p === null) {
-            return -1;
+            return false;
         }
 
         const dado = p.conteudo;
@@ -188,7 +192,7 @@ class LDE {
 
     remove(pos) {
         if (this.vazia()) {
-            return -1;
+            return false;
         }
         
         if (pos === 1 && this.tamanho === 1) {

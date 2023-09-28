@@ -52,6 +52,10 @@ class ListaSeq {
         if (this.cheia() || pos > this.nElementos + 1 || pos <= 0) {
             return false;
         }
+
+        if(!pos || !valor){
+            return false;
+        }
     
         // Desloca os elementos após a posição 'pos' uma posição à direita
         for (let i = this.nElementos; i >= pos; i--) {
