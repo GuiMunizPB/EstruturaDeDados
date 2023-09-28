@@ -170,7 +170,8 @@
             function alterarTamanhoLista() {
             
             const tamanho = parseInt(document.getElementById("tamanhoLista").value);
-      
+
+          
       
             if (!isNaN(tamanho) && tamanho >= 1) {
                  // Remova os quadradinhos existentes, se houver algum
@@ -190,8 +191,13 @@
             
                lista = new ListaSeq(tamanho); 
                alert("Tamanho da lista alterado para " + tamanho);
-                          
-            } else {
+            
+            
+            
+            
+            
+            
+            }else if (!isNaN(tamanho) && tamanho === 0){
                 var quadradinhosContainer = document.getElementById("quadradinhos-container");
                 quadradinhosContainer.innerHTML = "";
 
@@ -203,9 +209,14 @@
                     quadradinhosContainer.appendChild(quadradinho);
                 }
                
-                alert("lista sem tamanho");
+            
                 
                 lista = new ListaSeq(tamanho + 100);
+            }
+
+            else {
+
+                alert("Insira um tamanho válido");
             }
             
             atualizarQuadradinhos();
@@ -240,6 +251,7 @@
                     }
                 }
                 atualizarQuadradinhos1()
+            
             }
 
 
@@ -325,12 +337,13 @@
 
             // Função a ser executada quando a imagem for clicada
             function realizarOperacaoRemocao() {
+                var posicao = document.getElementById("posicao2").value;
                 var sucesso = lista.remove(document.getElementById("posicao2").value);
                 if(sucesso){
                     var quadradinhos = document.querySelectorAll(".quadradinho");
 
                     // Destacar o quadrado correspondente à posição
-                    var quadradinho = quadradinhos[sucesso - 1]; // -1 porque as posições da lista começam em 1
+                    var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
                     quadradinho.classList.add("destaque3");
 
                     // Remover o destaque após 3 segundos (3000 milissegundos)
@@ -425,7 +438,7 @@
                     // Remover o destaque após 1 segundo (1000 milissegundos)
                     setTimeout(function () {
                         quadradinho.classList.remove("destaque");
-                    }, 3000);
+                    }, 1500);
                     
                     alert("O valor da posição procurada é: " + sucesso);
                 } else {
@@ -446,22 +459,26 @@
 
 
 
-
             function mostrarConceito(conceitoId) {
-                // Oculta todos os conceitos
-                var conceitos = document.querySelectorAll(".conceito");
-                for (var i = 0; i < conceitos.length; i++) {
-                    conceitos[i].style.display = "none";
-                }
-                
-                // Mostra o conceito correspondente ao ID clicado
-                var conceito = document.getElementById(conceitoId);
-                if (conceito) {
-                    conceito.style.display = "block";
-                } else {
-                    console.error("Elemento não encontrado para o ID: " + conceitoId);
-                }
+            // Oculta todos os conceitos
+            var conceitos = document.querySelectorAll(".conceito");
+            for (var i = 0; i < conceitos.length; i++) {
+                conceitos[i].style.display = "none";
             }
+
+            // Mostra o conceito correspondente ao ID clicado
+            var conceito = document.getElementById(conceitoId);
+            if (conceito) {
+                conceito.style.display = "block";
+            } else {
+                console.error("Elemento não encontrado para o ID: " + conceitoId);
+            }
+
+            // Atualiza os quadradinhos quando a aba é trocada
+            atualizarQuadradinhos();
+            atualizarQuadradinhos1();
+            atualizarQuadradinhos2();
+        }
 
 
     </script>
@@ -482,13 +499,14 @@
           for (var i = 0; i < lde.tamanho; i++) {
               var valor = lde.elemento(i + 1); // +1 porque as posições da lista começam em 1
               var quadradinho = document.createElement("div");
-              quadradinho.className = "quadradinho";
+              quadradinho.className = "quadradinholde";
               quadradinhosContainer.appendChild(quadradinho);
               if(i != lde.tamanho - 1) {
               var seta = document.createElement("div");
               seta.className = "fas fa-exchange-alt seta";
               quadradinhosContainer.appendChild(seta);
               }
+
             
             
               if (valor !== false) {
@@ -498,6 +516,7 @@
                   quadradinho.appendChild(numero);
               }
           }
+       
       }
 
 
@@ -534,18 +553,19 @@
           var sucesso = lde.insere(posicao, valor);
              if (sucesso ) {
                   alert("Inserido com sucesso");
+                  atualizarQuadradinhos1()
 
                   // Insira o valor no quadradinho correspondente à posição
-                  atualizarQuadradinhos1()
-                  var quadradinhos = document.querySelectorAll(".quadradinho");
+                  
+                  var quadradinhos = document.querySelectorAll(".quadradinholde");
                   
                   // Destacar o quadrado correspondente à posição
                   var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
-                  quadradinho.classList.add("destaque2");
+                  quadradinho.classList.add("destaquelde2");
                   
                   // Remover o destaque após 3 segundos (3000 milissegundos)
                   setTimeout(function () {
-                      quadradinho.classList.remove("destaque2");
+                      quadradinho.classList.remove("destaquelde2");
                   }, 1500);
                   valorInput.value= "";
                     posicaoInput.value = "";
@@ -556,7 +576,7 @@
                     alert("Não foi possível inserir");
                    
                             }
-                
+               
             }
 
 
@@ -586,20 +606,23 @@
           posicao = parseInt(document.getElementById("posicao2-lde").value);
           var sucesso = lde.remove(posicao);
           if(sucesso){
-            //   var quadradinhos = document.querySelectorAll(".quadradinho");
-              
-            //   // Destacar o quadrado correspondente à posição
-            //   var quadradinho = quadradinhos[sucesso - 1]; // -1 porque as posições da lista começam em 1
-            //   quadradinho.classList.add("destaque3");
-              
-            //   // Remover o destaque após 3 segundos (3000 milissegundos)
-            //   setTimeout(function () {
-            //       quadradinho.classList.remove("destaque3");
-            //     }, 1500);
-                
-              document.getElementById("posicao2-lde").value = "";
-              atualizarQuadradinhos1()
-              alert("removido com sucesso");
+                alert("Removido com sucesso");
+                  atualizarQuadradinhos1()
+                  // Insira o valor no quadradinho correspondente à posição
+                  
+                  var quadradinhos = document.querySelectorAll(".quadradinholde");
+                  
+                  // Destacar o quadrado correspondente à posição
+                  var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
+                  quadradinho.classList.add("destaquelde3");
+                  
+                  // Remover o destaque após 3 segundos (3000 milissegundos)
+                  setTimeout(function () {
+                      quadradinho.classList.remove("destaquelde3");
+                  }, 1500);
+                  valorInput.value= "";
+                    posicaoInput.value = "";
+                    document.getElementById("posicao2-lde").value = "";
           }
           else{
               alert("Não foi possível remover")
@@ -609,125 +632,128 @@
       // Adicione um ouvinte de evento para verificar os campos sempre que houver uma alteração neles
       document.getElementById("posicao2-lde").addEventListener("input", verificarCamposPreenchidosRemocao1);
 
+       // Funções de Busca
 
 
-
-      // Funções de Busca
-      function verificarCamposPreenchidosBuscaPorValor1() {
-          var valor = document.getElementById("valor3-lde").value;
+    function verificarCamposPreenchidosBuscaPorValor1() {
+      var valor = document.getElementById("valor3-lde").value;
+      
+      if (valor) {
+          document.getElementById("imagemLDE3").addEventListener("click", realizarOperacaoBuscaPorValor1);
           
-          if (valor) {
-              document.getElementById("imagemLDE3").addEventListener("click", realizarOperacaoBuscaPorValor1);
-              
-              
-           } else {
-                // Remove o evento se o campo não estiver preenchido
-              document.getElementById("valor3-lde").value = "";
-              document.getElementById("imagemLD3").removeEventListener("click", realizarOperacaoBuscaPorValor1);
-            }
-
-         }
-
-      function verificarCamposPreenchidosBuscaPorPosicao1() {
-          var valor = document.getElementById("posicao3-lde").value;
           
-          if (valor) {
-              document.getElementById("imagemLDE3").addEventListener("click", realizarOperacaoBuscaPorPosicao1);
-              
-           } else {
-                // Remove o evento se o campo não estiver preenchido
-              document.getElementById("valor3-lde").value = "";
-              document.getElementById("imagemLDE3").removeEventListener("click", realizarOperacaoBuscaPorPosicao1);
-            }
+       } else {
+            // Remove o evento se o campo não estiver preenchido
+          document.getElementById("valor3-lde").value = "";
+          document.getElementById("imagemLDE3").removeEventListener("click", realizarOperacaoBuscaPorValor1);
+        }
 
-         }
+     }
 
-         // Função a ser executada quando a imagem for clicada para buscar por valor
-         function realizarOperacaoBuscaPorValor1() {
-              var valor = document.getElementById("valor3-lde").value;
-              var sucesso = lde.posicao(valor);
-              
-              var quadradinhos = document.querySelectorAll(".quadradinho");
-              
-              if (sucesso !== false) {
-                  // Destacar o quadradinho correspondente à posição
-                  var quadradinho = quadradinhos[sucesso - 1]; // -1 porque as posições da lista começam em 1
-                  quadradinho.classList.add("destaque");
-                  
-                  // Remover o destaque após 3 segundos (3000 milissegundos)
-                  setTimeout(function () {
-                      quadradinho.classList.remove("destaque");
-                  }, 3000);
-                  
-                  alert("A posição do valor procurado é: " + sucesso);
-              } else {
-                  alert("Valor não encontrado.");
-              }
-              
-              document.getElementById("valor3-lde").value = "";
-              document.getElementById("imagemLDE13").removeEventListener("click", realizarOperacaoBuscaPorValor1);
-          }
-
-
-        // Função a ser executada quando a imagem for clicada para buscar por posição
-        function realizarOperacaoBuscaPorPosicao1() {
-          var posicao = document.getElementById("posicao3-lde").value;
-          var sucesso = lde.elemento(posicao);
+  function verificarCamposPreenchidosBuscaPorPosicao1() {
+      var valor = document.getElementById("posicao3-lde").value;
+      
+      if (valor) {
+          document.getElementById("imagemLDE3").addEventListener("click", realizarOperacaoBuscaPorPosicao1);
           
-          var quadradinhos = document.querySelectorAll(".quadradinho");
-          
-          if (sucesso !== false) {
-            //   Destacar o quadradinho correspondente à posição
-              var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
-              quadradinho.classList.add("destaque");
-              
-              // Remover o destaque após 1 segundo (1000 milissegundos)
-              setTimeout(function () {
-                  quadradinho.classList.remove("destaque");
-              }, 3000);
-              
-              alert("O valor da posição procurada é: " + sucesso);
-          } else {
-              alert("Posição não encontrada.");
-          }
-          
+       } else {
+            // Remove o evento se o campo não estiver preenchido
           document.getElementById("posicao3-lde").value = "";
           document.getElementById("imagemLDE3").removeEventListener("click", realizarOperacaoBuscaPorPosicao1);
-      }
-       // Adicione um ouvinte de evento para verificar os campos sempre que houver uma alteração neles
-      document.getElementById("valor3-lde").addEventListener("input", verificarCamposPreenchidosBuscaPorValor1);
-      document.getElementById("posicao3-lde").addEventListener("input", verificarCamposPreenchidosBuscaPorPosicao1);
+        }
+
+     }
+
+     function realizarOperacaoBuscaPorPosicao1() {
+      var posicao = document.getElementById("posicao3-lde").value;
+      var sucesso = lde.elemento(posicao);
       
+      var quadradinhos = document.querySelectorAll(".quadradinholde");
+      
+      if (sucesso) {
+        //   Destacar o quadradinho correspondente à posição
+          var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
+          quadradinho.classList.add("destaquelde");
+          
+          // Remover o destaque após 1 segundo (1000 milissegundos)
+          setTimeout(function () {
+              quadradinho.classList.remove("destaquelde");
+          }, 1500);
+          
+          alert("O valor da posição procurada é: " + sucesso);
+      } else {
+          alert("Posição não encontrada.");
+      }
+      
+      document.getElementById("posicao3-lde").value = "";
+      document.getElementById("imagemLDE3").removeEventListener("click", realizarOperacaoBuscaPorPosicao1);
+  }
+   // Adicione um ouvinte de evento para verificar os campos sempre que houver uma alteração neles
+
+  document.getElementById("posicao3-lde").addEventListener("input", verificarCamposPreenchidosBuscaPorPosicao1);
+
+     function realizarOperacaoBuscaPorValor1() {
+          var valor = document.getElementById("valor3-lde").value;
+          var sucesso = lde.posicao(valor);
+          
+          var quadradinhos = document.querySelectorAll(".quadradinholde");
+          
+          if (sucesso) {
+              // Destacar o quadradinho correspondente à posição
+              var quadradinho = quadradinhos[sucesso - 1]; // -1 porque as posições da lista começam em 1
+              quadradinho.classList.add("destaquelde");
+              
+              // Remover o destaque após 3 segundos (3000 milissegundos)
+              setTimeout(function () {
+                  quadradinho.classList.remove("destaquelde");
+              }, 1500);
+              
+              alert("A posição do valor procurado é: " + sucesso);
+          } else {
+              alert("Valor não encontrado.");
+          }
+          
+          document.getElementById("valor3-lde").value = "";
+          document.getElementById("imagemLDE3").removeEventListener("click", realizarOperacaoBuscaPorValor1);
+      }
+
+      document.getElementById("valor3-lde").addEventListener("input", verificarCamposPreenchidosBuscaPorValor1);
+     
+
+       
+      
+     
 </script>
 <script>
     var lse = new LSE();
 
      // Função para atualizar os quadradinhos com base na lista
      function atualizarQuadradinhos2() {
-    var quadradinhosContainer = document.getElementById("quadradinhos-container-lse");
-    quadradinhosContainer.innerHTML = "";
+            var quadradinhosContainer = document.getElementById("quadradinhos-container-lse");
+            quadradinhosContainer.innerHTML = "";
 
-    // Percorre os quadradinhos e preenche com os valores da lista
-    for (var i = 0; i < lse.nElementos; i++) {
-            var quadradinho = document.createElement("div");
-            quadradinho.className = "quadradinho";
-            quadradinhosContainer.appendChild(quadradinho);
+            // Percorre os quadradinhos e preenche com os valores da lista
+            for (var i = 0; i < lse.nElementos; i++) {
+                    var quadradinho = document.createElement("div");
+                    quadradinho.className = "quadradinholse";
+                    quadradinhosContainer.appendChild(quadradinho);
 
-            // Adicione uma seta entre os quadradinhos, exceto no último
-            if (i !== lse.nElementos - 1) {
-                var seta2 = document.createElement("div");
-                seta2.className = "fas fa-arrow-right seta2";
-                quadradinhosContainer.appendChild(seta2);
-            }
+                    // Adicione uma seta entre os quadradinhos, exceto no último
+                    if (i !== lse.nElementos - 1) {
+                        var seta2 = document.createElement("div");
+                        seta2.className = "fas fa-arrow-right seta2";
+                        quadradinhosContainer.appendChild(seta2);
+                    }
 
-            var valorQuadradinho = lse.elemento(i + 1); // +1 porque as posições da lista começam em 1
-            if (valorQuadradinho !== false) {
-                var numero = document.createElement("span");
-                numero.className = "numero";
-                numero.textContent = valorQuadradinho;
-                quadradinho.appendChild(numero);
-            }
-        }
+                    var valorQuadradinho = lse.elemento(i + 1); // +1 porque as posições da lista começam em 1
+                    if (valorQuadradinho !== false) {
+                        var numero = document.createElement("span");
+                        numero.className = "numero";
+                        numero.textContent = valorQuadradinho;
+                        quadradinho.appendChild(numero);
+                    }
+                }
+     
 }
 
  function verificarCamposPreenchidosAdicao2() {
@@ -748,83 +774,87 @@
       }
 
       function realizarOperacaoAdicao2() {
-    var valorInput = document.getElementById("valor-lse");
-    var posicaoInput = document.getElementById("posicao-lse");
+            var valorInput = document.getElementById("valor-lse");
+            var posicaoInput = document.getElementById("posicao-lse");
 
-    var valor = valorInput.value;
-    var posicao = parseInt(posicaoInput.value);
+            var valor = valorInput.value;
+            var posicao = parseInt(posicaoInput.value);
 
-
-
-    var sucesso = lse.insere(posicao, valor);
-
-    if (sucesso) {
-        // Atualiza visualmente os quadradinhos com base na lista
-        alert("Inserido com sucesso");
-        atualizarQuadradinhos2();
-
-        // Seleciona o contêiner de quadradinhos
-        var quadradinhosContainer = document.getElementById("quadradinhos-container-lse");
-
-        // Remove todos os quadradinhos existentes
-        quadradinhosContainer.innerHTML = "";
-
-
-        // Crie um número específico de quadradinhos com base no tamanho da lista
-        for (var i = 0; i < lse.nElementos; i++) {
-            var quadradinho = document.createElement("div");
-            quadradinho.className = "quadradinho";
-            quadradinhosContainer.appendChild(quadradinho);
-
-            // Adicione uma seta entre os quadradinhos, exceto no último
-            if (i !== lse.nElementos- 1) {
-            var seta2 = document.createElement("div");
-              seta2.className = "fas fa-arrow-right seta2";
-              quadradinhosContainer.appendChild(seta2);
+            if (!valor || !posicao || isNaN(valor) || isNaN(posicao)) {
+                alert("Preencha os campos corretamente antes de clicar na imagem.");
+                return; // Encerrar a função se os campos não estiverem preenchidos corretamente
             }
 
-            var valorQuadradinho = lse.elemento(i + 1); // +1 porque as posições da lista começam em 1
-            if (valorQuadradinho !== false) {
-                var numero = document.createElement("span");
-                numero.className = "numero";
-                numero.textContent = valorQuadradinho;
-                quadradinho.appendChild(numero);
-            }
-        }
 
-        // Seleciona todos os quadradinhos
-        var quadradinhos = document.querySelectorAll(".quadradinho");
+            var sucesso = lse.insere(posicao, valor);
 
-        // Verifica se a posição é válida
-        if (posicao > 0 && posicao <= quadradinhos.length) {
-            // Destaca o quadrado correspondente à posição
-            var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
+            if (sucesso) {
+                // Atualiza visualmente os quadradinhos com base na lista
+                alert("Inserido com sucesso");
+                atualizarQuadradinhos2();
 
-            // Verifica se o elemento foi encontrado
-            if (quadradinho) {
-                quadradinho.classList.add("destaque2");
+                // Seleciona o contêiner de quadradinhos
+                var quadradinhosContainer = document.getElementById("quadradinhos-container-lse");
 
-                // Remove o destaque após 1,5 segundos (1500 milissegundos)
-                setTimeout(function () {
-                    quadradinho.classList.remove("destaque2");
-                }, 1500);
+                // Remove todos os quadradinhos existentes
+                quadradinhosContainer.innerHTML = "";
+
+
+                // Crie um número específico de quadradinhos com base no tamanho da lista
+                for (var i = 0; i < lse.nElementos; i++) {
+                    var quadradinho = document.createElement("div");
+                    quadradinho.className = "quadradinholse";
+                    quadradinhosContainer.appendChild(quadradinho);
+
+                    // Adicione uma seta entre os quadradinhos, exceto no último
+                    if (i !== lse.nElementos- 1) {
+                    var seta2 = document.createElement("div");
+                    seta2.className = "fas fa-arrow-right seta2";
+                    quadradinhosContainer.appendChild(seta2);
+                    }
+
+                    var valorQuadradinho = lse.elemento(i + 1); // +1 porque as posições da lista começam em 1
+                    if (valorQuadradinho !== false) {
+                        var numero = document.createElement("span");
+                        numero.className = "numero";
+                        numero.textContent = valorQuadradinho;
+                        quadradinho.appendChild(numero);
+                    }
+                }
+
+                // Seleciona todos os quadradinhos
+                var quadradinhos = document.querySelectorAll(".quadradinholse");
+
+                // Verifica se a posição é válida
+                if (posicao > 0 && posicao <= quadradinhos.length) {
+                    // Destaca o quadrado correspondente à posição
+                    var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
+
+                    // Verifica se o elemento foi encontrado
+                    if (quadradinho) {
+                        quadradinho.classList.add("destaquelse2");
+
+                        // Remove o destaque após 1,5 segundos (1500 milissegundos)
+                        setTimeout(function () {
+                            quadradinho.classList.remove("destaquelse2");
+                        }, 1500);
+                    } else {
+                        console.error("Elemento não encontrado para a posição", posicao);
+                    }
+                } else {
+                    console.error("Posição inválida:", posicao);
+                }
+
+                // Limpa os campos de entrada após a adição
+                valorInput.value= "";
+                posicaoInput.value = "";
+                
             } else {
-                console.error("Elemento não encontrado para a posição", posicao);
+                alert("Não foi possível inserir");
+                valorInput.value= "";
+                posicaoInput.value = "";
+            
             }
-        } else {
-            console.error("Posição inválida:", posicao);
-        }
-
-        // Limpa os campos de entrada após a adição
-        valorInput.value= "";
-        posicaoInput.value = "";
-        
-    } else {
-        alert("Não foi possível inserir");
-        valorInput.value= "";
-        posicaoInput.value = "";
-    
-    }
 }
 
 
@@ -841,36 +871,38 @@
           document.getElementById("imagemsLSE2").addEventListener("click", realizarOperacaoRemocao2);
       } else {
           // Se algum dos campos estiver vazio, remova o evento de clique da imagem
-          document.getElementById("valor-lse").value = "";
-          document.getElementById("posicao-lse").value = "";
+          //document.getElementById("valor-lse").value = "";
+          //document.getElementById("posicao-lse").value = "";
           document.getElementById("imagemsLSE2").removeEventListener("click", realizarOperacaoRemocao2);
       }
   }
 
-  // Função a ser executada quando a imagem for clicada
   function realizarOperacaoRemocao2() {
-      posicao = parseInt(document.getElementById("posicao2-lse").value);
-      var sucesso = lse.remove(posicao);
-      if(sucesso){
-        //   var quadradinhos = document.querySelectorAll(".quadradinho");
-          
-        //   // Destacar o quadrado correspondente à posição
-        //   var quadradinho = quadradinhos[sucesso - 1]; // -1 porque as posições da lista começam em 1
-        //   quadradinho.classList.add("destaque3");
-          
-        //   // Remover o destaque após 3 segundos (3000 milissegundos)
-        //   setTimeout(function () {
-        //       quadradinho.classList.remove("destaque3");
-        //     }, 1500);
-            
-          document.getElementById("posicao2-lse").value = "";
-          atualizarQuadradinhos2()
-          alert("removido com sucesso");
+          posicao = parseInt(document.getElementById("posicao2-lse").value);
+          var sucesso = lse.remove(posicao);
+          if(sucesso){
+                alert("Removido com sucesso");
+                  atualizarQuadradinhos2()
+                  // Insira o valor no quadradinho correspondente à posição
+                  
+                  var quadradinhos = document.querySelectorAll(".quadradinholse");
+                  
+                  // Destacar o quadrado correspondente à posição
+                  var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
+                  quadradinho.classList.add("destaquelse3");
+                  
+                  // Remover o destaque após 3 segundos (3000 milissegundos)
+                  setTimeout(function () {
+                      quadradinho.classList.remove("destaquelse3");
+                  }, 1500);
+                  valorInput.value= "";
+                    posicaoInput.value = "";
+                    document.getElementById("posicao2-lse").value = "";
+          }
+          else{
+              alert("Não foi possível remover")
+          }
       }
-      else{
-          alert("Não foi possível remover")
-      }
-  }
 
   // Adicione um ouvinte de evento para verificar os campos sempre que houver uma alteração neles
   document.getElementById("posicao2-lse").addEventListener("input", verificarCamposPreenchidosRemocao2);
@@ -904,46 +936,21 @@
 
      }
 
-     function realizarOperacaoBuscaPorValor2() {
-          var valor = document.getElementById("valor3-lse").value;
-          var sucesso = lse.posicao(valor);
-          
-          var quadradinhos = document.querySelectorAll(".quadradinho");
-          
-          if (sucesso !== false) {
-              // Destacar o quadradinho correspondente à posição
-              var quadradinho = quadradinhos[sucesso - 1]; // -1 porque as posições da lista começam em 1
-              quadradinho.classList.add("destaque");
-              
-              // Remover o destaque após 3 segundos (3000 milissegundos)
-              setTimeout(function () {
-                  quadradinho.classList.remove("destaque");
-              }, 3000);
-              
-              alert("A posição do valor procurado é: " + sucesso);
-          } else {
-              alert("Valor não encontrado.");
-          }
-          
-          document.getElementById("valor3-lse").value = "";
-          document.getElementById("imagemsLSE3").removeEventListener("click", realizarOperacaoBuscaPorValor2);
-      }
-
-      function realizarOperacaoBuscaPorPosicao2() {
+     function realizarOperacaoBuscaPorPosicao2() {
       var posicao = document.getElementById("posicao3-lse").value;
       var sucesso = lse.elemento(posicao);
       
-      var quadradinhos = document.querySelectorAll(".quadradinho");
+      var quadradinhos = document.querySelectorAll(".quadradinholse");
       
       if (sucesso !== false) {
         //   Destacar o quadradinho correspondente à posição
           var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
-          quadradinho.classList.add("destaque");
+          quadradinho.classList.add("destaquelse");
           
           // Remover o destaque após 1 segundo (1000 milissegundos)
           setTimeout(function () {
-              quadradinho.classList.remove("destaque");
-          }, 3000);
+              quadradinho.classList.remove("destaquelse");
+          }, 1500);
           
           alert("O valor da posição procurada é: " + sucesso);
       } else {
@@ -954,11 +961,36 @@
       document.getElementById("imagemsLSE3").removeEventListener("click", realizarOperacaoBuscaPorPosicao2);
   }
    // Adicione um ouvinte de evento para verificar os campos sempre que houver uma alteração neles
-  document.getElementById("valor3-lse").addEventListener("input", verificarCamposPreenchidosBuscaPorValor2);
+
   document.getElementById("posicao3-lse").addEventListener("input", verificarCamposPreenchidosBuscaPorPosicao2);
 
+     function realizarOperacaoBuscaPorValor2() {
+          var valor = document.getElementById("valor3-lse").value;
+          var sucesso = lse.posicao(valor);
+          
+          var quadradinhos = document.querySelectorAll(".quadradinholse");
+          
+          if (sucesso !== false) {
+              // Destacar o quadradinho correspondente à posição
+              var quadradinho = quadradinhos[sucesso - 1]; // -1 porque as posições da lista começam em 1
+              quadradinho.classList.add("destaquelse");
+              
+              // Remover o destaque após 3 segundos (3000 milissegundos)
+              setTimeout(function () {
+                  quadradinho.classList.remove("destaquelse");
+              }, 1500);
+              
+              alert("A posição do valor procurado é: " + sucesso);
+          } else {
+              alert("Valor não encontrado.");
+          }
+          
+          document.getElementById("valor3-lse").value = "";
+          document.getElementById("imagemsLSE3").removeEventListener("click", realizarOperacaoBuscaPorValor2);
+      }
 
-
+      document.getElementById("valor3-lse").addEventListener("input", verificarCamposPreenchidosBuscaPorValor2);
+     
 
 </script>
 
