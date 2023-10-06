@@ -33,7 +33,9 @@
                     <li><a href="javascript:void(0);" onclick="mostrarConceito('sequencias')">Listas Sequenciais</a></li>
                     <li><a href="javascript:void(0);" onclick="mostrarConceito('simplesmente-encadeadas')">Listas Simplesmente Encadeadas</a></li>
                     <li><a href="javascript:void(0);" onclick="mostrarConceito('duplamente-encadeadas')">Listas Duplamente Encadeadas</a></li>
-
+                    <li><a href="javascript:void(0);"  onclick="mostrarConceito('pilhas')">Pilhas</a></li>
+                    <li><a href="javascript:void(0);" onclick="mostrarConceito('filas')">Filas</a></li>
+                    <li><a href="javascript:void(0);" onclick="mostrarConceito('arvores-bp')">Árvores Binárias de Pesquisa</a></li>
                 </ul>
             </div>
             <div class="conteudo-central">
@@ -73,14 +75,9 @@
                                 <label for="posicao3">Posição do valor de Busca:</label>
                                 <input type="text" id="posicao3">
                             </div>
-
-                            
-
                         </div>
 
                         <div id="quadradinhos-container" class="quadradinhos-container"></div> 
-
-
                     </div>
 
                     <div id = "simplesmente-encadeadas" class = "conceito" style="display: none;">
@@ -111,9 +108,8 @@
                                 <label for="posicao3-lse">Posição do valor de Busca:</label>
                                 <input type="text" id="posicao3-lse">
                             </div>
-                        
-                         
                         </div>
+
                         <div id="quadradinhos-container-lse" class="quadradinhos-container-lse"></div> 
                     </div>
 
@@ -146,13 +142,74 @@
                                 <label for="posicao3-lde">Posição do valor de Busca:</label>
                                 <input type="text" id="posicao3-lde">
                             </div>
-                    </div>
-                    <div id="quadradinhos-container-lde" class="quadradinhos-container-lde"></div> 
+                        </div>
 
+                        <div id="quadradinhos-container-lde" class="quadradinhos-container-lde"></div> 
                     </div>
-            </div>
 
+                    <div id="pilhas" class="conceito" style="display: none;">
+                        <div class="menu-interface-pilha">
+                            
+                            <img  id="ImagemPilha1" src="assets/imgs/add-to-stack2.png" alt="Imagem">
+                            
+                            <div class="funcoes-interface">
+                                <label for="valor3-pilha">Digite o valor:</label>
+                                <input type="text" id="valor3-pilha">
+
+                                <button onclick="pushParaPilha()">Push</button>
+                            </div>
+                            
+                            <img  id="ImagemPilha2" src="assets/imgs/pop.png" alt="Imagem">
+                            <div class="tamanho-lista">
+                                <label for="tamanhoLista">Remoção da Pilha:</label>
+                                <br>
+                                <button onclick="popDaPilha()">Pop</button>
+                            </div>
+                            
+                            <img  id="ImagemPilha3" src="assets/imgs/search-stack.png" alt="Imagem">
+
+                            <div class="tamanho-lista">
+                                <label for="tamanhoLista">Topo da Pilha:</label>
+                                <br>
+                                <button onclick="consultarTopoPilha()">Consultar</button>
+                            </div>
+                        </div>
+
+                        <div id="quadradinhos-container-pilha" class="quadradinhos-container-pilha"></div> 
                     </div>
+
+                    <div id="filas" class="conceito" style="display: none;">
+                        <div class="menu-interface-pilha">
+                            
+                            <img  id="ImagemFila1" src="assets/imgs/add-queue.png" alt="Imagem">
+                            
+                            <div class="funcoes-interface">
+                                <label for="valor3-fila">Digite o valor:</label>
+                                <input type="text" id="valor3-fila">
+
+                                <button onclick="insereNaFila()">Enqueue</button>
+                            </div>
+                            
+                            <img  id="ImagemFila2" src="assets/imgs/queue-remove.png" alt="Imagem">
+                            <div class="tamanho-lista">
+                                <label for="tamanhoLista">Remoção da Fila:</label>
+                                <br>
+                                <button onclick="removeDaFila()">Dequeue</button>
+                            </div>
+                            
+                            <img  id="ImagemFila3" src="assets/imgs/publico-alvo.png" alt="Imagem">
+
+                            <div class="tamanho-lista">
+                                <label for="tamanhoLista">Primeiro da Fila:</label>
+                                <br>
+                                <button onclick="primeiroDaFila()">Consultar</button>
+                            </div>
+                        </div>
+
+                        <div id="quadradinhos-container-fila" class="quadradinhos-container-fila"></div> 
+                    </div>
+                
+                </div>
             </div>
         </div>
     </main>
@@ -163,836 +220,13 @@
     <script src="assets/js/LDE.js"></script>
     <script src="assets/js/No.js"></script>
     <script src="assets/js/LSE.js"></script>
-    
-    <script> 
-          var lista = new ListaSeq();
-
-            function alterarTamanhoLista() {
-            
-            const tamanho = parseInt(document.getElementById("tamanhoLista").value);
-
-          
-      
-            if (!isNaN(tamanho) && tamanho >= 1) {
-                 // Remova os quadradinhos existentes, se houver algum
-                var quadradinhosContainer = document.getElementById("quadradinhos-container");
-                quadradinhosContainer.innerHTML = "";
-
-                
-                
-                // Crie um número específico de quadradinhos com base no tamanho
-                for (var i = 0; i < tamanho; i++) {
-                    var quadradinho = document.createElement("div");
-                    quadradinho.className = "quadradinho";
-                    quadradinhosContainer.appendChild(quadradinho);
-                }
-            
-                          
-            
-               lista = new ListaSeq(tamanho); 
-               alert("Tamanho da lista alterado para " + tamanho);
-            
-            
-            
-            
-            
-            
-            }else if (!isNaN(tamanho) && tamanho === 0){
-                var quadradinhosContainer = document.getElementById("quadradinhos-container");
-                quadradinhosContainer.innerHTML = "";
-
-                
-                // Crie um número específico de quadradinhos com base no tamanho
-                for (var i = 0; i < tamanho + 100; i++) {
-                    var quadradinho = document.createElement("div");
-                    quadradinho.className = "quadradinho";
-                    quadradinhosContainer.appendChild(quadradinho);
-                }
-               
-            
-                
-                lista = new ListaSeq(tamanho + 100);
-            }
-
-            else {
-
-                alert("Insira um tamanho válido");
-            }
-            
-            atualizarQuadradinhos();
-            }
-
-      
-
-            // Função para atualizar os quadradinhos com base na lista
-            function atualizarQuadradinhos() {
-                var quadradinhos = document.querySelectorAll(".quadradinho");
-
-               
-
-               
-
-                // Percorre os quadradinhos e preenche com os valores da lista
-                for (var i = 0; i < quadradinhos.length; i++) {
-                    var valor = lista.elemento(i + 1); // +1 porque as posições da lista começam em 1
-
-                    while (quadradinhos[i].firstChild) {
-                        quadradinhos[i].removeChild(quadradinhos[i].firstChild);
-                    }
-                   
-
-                   
-
-                    if (valor !== false) {
-                        var numero = document.createElement("span");
-                        numero.className = "numero";
-                        numero.textContent = valor;
-                        quadradinhos[i].appendChild(numero);
-                    }
-                }
-                atualizarQuadradinhos1()
-            
-            }
-
-
-
-
-            //Função de Inserção
-            function verificarCamposPreenchidosAdicao() {
-                    var valor = document.getElementById("valor").value;
-                    var posicao = document.getElementById("posicao").value;
-
-                    if (valor && posicao && !isNaN(valor) && !isNaN(posicao)) {
-                        // Se ambos os campos foram preenchidos, torne a imagem clicável
-                        document.getElementById("minhaImagem").addEventListener("click", realizarOperacaoAdicao);
-                    
-                        
-                    } else {
-                        // Se algum dos campos estiver vazio, remova o evento de clique da imagem
-                        document.getElementById("minhaImagem").removeEventListener("click", realizarOperacaoAdicao);
-                      
-                    }
-                }
-
-             // Função a ser executada quando a imagem for clicada
-             // Função a ser executada quando a imagem for clicada para adicionar um valor
-            function realizarOperacaoAdicao() {
-                var valorInput = document.getElementById("valor");
-                var posicaoInput = document.getElementById("posicao");
-
-                var valor = valorInput.value;
-                var posicao = parseInt(posicaoInput.value);
-
-                var sucesso = lista.insere(posicao, valor);
-                   if (sucesso) {
-                        alert("Inserido com sucesso");
-
-                        // Insira o valor no quadradinho correspondente à posição
-                        atualizarQuadradinhos()
-
-                        var quadradinhos = document.querySelectorAll(".quadradinho");
-
-                        // Destacar o quadrado correspondente à posição
-                        var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
-                        quadradinho.classList.add("destaque2");
-
-                        // Remover o destaque após 3 segundos (3000 milissegundos)
-                        setTimeout(function () {
-                            quadradinho.classList.remove("destaque2");
-                        }, 1500);
-
-                        // Limpe os campos de entrada após a adição
-                        valorInput.value= "";
-                        posicaoInput.value = "";
-                       
-                    } else {
-                        alert("Não foi possível inserir");
-                        valorInput.value= "";
-                        posicaoInput.value = "";
-                       
-                    }
-                }
-
-
-            // Adicione um ouvinte de evento para verificar os campos sempre que houver uma alteração neles
-            document.getElementById("valor").addEventListener("input", verificarCamposPreenchidosAdicao);
-            document.getElementById("posicao").addEventListener("input", verificarCamposPreenchidosAdicao);
-
-        
-                
-
-            //Função de Remoção
-            function verificarCamposPreenchidosRemocao() {
-                var posicao = document.getElementById("posicao2").value;
-
-                if (posicao) {
-                    // Se ambos os campos foram preenchidos, torne a imagem clicável
-                    document.getElementById("minhaImagem2").addEventListener("click", realizarOperacaoRemocao);
-                } else {
-                    // Se algum dos campos estiver vazio, remova o evento de clique da imagem
-                    document.getElementById("posicao2").value = "";
-                    document.getElementById("minhaImagem2").removeEventListener("click", realizarOperacaoRemocao);
-                }
-            }
-
-            // Função a ser executada quando a imagem for clicada
-            function realizarOperacaoRemocao() {
-                var posicao = document.getElementById("posicao2").value;
-                var sucesso = lista.remove(document.getElementById("posicao2").value);
-                if(sucesso){
-                    var quadradinhos = document.querySelectorAll(".quadradinho");
-
-                    // Destacar o quadrado correspondente à posição
-                    var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
-                    quadradinho.classList.add("destaque3");
-
-                    // Remover o destaque após 3 segundos (3000 milissegundos)
-                    setTimeout(function () {
-                        quadradinho.classList.remove("destaque3");
-                    }, 1500);
-                    document.getElementById("posicao2").value = "";
-                    atualizarQuadradinhos()
-                    alert("removido com sucesso");
-
-                }
-                else{
-                    alert("Não foi possível remover")
-                }
-            }
-
-            // Adicione um ouvinte de evento para verificar os campos sempre que houver uma alteração neles
-            document.getElementById("posicao2").addEventListener("input", verificarCamposPreenchidosRemocao);
-
-
-
-
-            // Funções de Busca
-            function verificarCamposPreenchidosBuscaPorValor() {
-                var valor = document.getElementById("valor3").value;
-                
-                if (valor) {
-                    document.getElementById("minhaImagem3").addEventListener("click", realizarOperacaoBuscaPorValor);
-                    
-                    
-                 } else {
-                      // Remove o evento se o campo não estiver preenchido
-                    document.getElementById("valor3").value = "";
-                    document.getElementById("minhaImagem3").removeEventListener("click", realizarOperacaoBuscaPorValor);
-                  }
-
-               }
-
-            function verificarCamposPreenchidosBuscaPorPosicao() {
-                var valor = document.getElementById("posicao3").value;
-                
-                if (valor) {
-                    document.getElementById("minhaImagem3").addEventListener("click", realizarOperacaoBuscaPorPosicao);
-                    
-                 } else {
-                      // Remove o evento se o campo não estiver preenchido
-                    document.getElementById("valor3").value = "";
-                    document.getElementById("minhaImagem3").removeEventListener("click", realizarOperacaoBuscaPorPosicao);
-                  }
-
-               }
-
-               // Função a ser executada quando a imagem for clicada para buscar por valor
-               function realizarOperacaoBuscaPorValor() {
-                    var valor = document.getElementById("valor3").value;
-                    var sucesso = lista.posicao(valor);
-                    
-                    var quadradinhos = document.querySelectorAll(".quadradinho");
-                    
-                    if (sucesso !== false) {
-                        // Destacar o quadradinho correspondente à posição
-                        var quadradinho = quadradinhos[sucesso - 1]; // -1 porque as posições da lista começam em 1
-                        quadradinho.classList.add("destaque");
-                        
-                        // Remover o destaque após 3 segundos (3000 milissegundos)
-                        setTimeout(function () {
-                            quadradinho.classList.remove("destaque");
-                        }, 1500);
-                        
-                        alert("A posição do valor procurado é: " + sucesso);
-                    } else {
-                        alert("Valor não encontrado.");
-                    }
-                    
-                    document.getElementById("valor3").value = "";
-                    document.getElementById("minhaImagem3").removeEventListener("click", realizarOperacaoBuscaPorValor);
-                }
-
-
-              // Função a ser executada quando a imagem for clicada para buscar por posição
-              function realizarOperacaoBuscaPorPosicao() {
-                var posicao = document.getElementById("posicao3").value;
-                var sucesso = lista.elemento(posicao);
-                
-                var quadradinhos = document.querySelectorAll(".quadradinho");
-                
-                if (sucesso !== false) {
-                    // Destacar o quadradinho correspondente à posição
-                    var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
-                    quadradinho.classList.add("destaque");
-                    
-                    // Remover o destaque após 1 segundo (1000 milissegundos)
-                    setTimeout(function () {
-                        quadradinho.classList.remove("destaque");
-                    }, 1500);
-                    
-                    alert("O valor da posição procurada é: " + sucesso);
-                } else {
-                    alert("Posição não encontrada.");
-                }
-                
-                document.getElementById("posicao3").value = "";
-                document.getElementById("minhaImagem3").removeEventListener("click", realizarOperacaoBuscaPorPosicao);
-            }
-             // Adicione um ouvinte de evento para verificar os campos sempre que houver uma alteração neles
-            document.getElementById("valor3").addEventListener("input", verificarCamposPreenchidosBuscaPorValor);
-            document.getElementById("posicao3").addEventListener("input", verificarCamposPreenchidosBuscaPorPosicao);
-            
-              
-
-
-
-
-
-
-            function mostrarConceito(conceitoId) {
-            // Oculta todos os conceitos
-            var conceitos = document.querySelectorAll(".conceito");
-            for (var i = 0; i < conceitos.length; i++) {
-                conceitos[i].style.display = "none";
-            }
-
-            // Mostra o conceito correspondente ao ID clicado
-            var conceito = document.getElementById(conceitoId);
-            if (conceito) {
-                conceito.style.display = "block";
-            } else {
-                console.error("Elemento não encontrado para o ID: " + conceitoId);
-            }
-
-            // Atualiza os quadradinhos quando a aba é trocada
-            atualizarQuadradinhos();
-            atualizarQuadradinhos1();
-            atualizarQuadradinhos2();
-        }
-
-
-    </script>
-
-<script> 
-    var lde = new LDE();
-
-
-      // Função para atualizar os quadradinhos com base na lista
-      function atualizarQuadradinhos1() {
-         
-          var quadradinhosContainer = document.getElementById("quadradinhos-container-lde");
-          quadradinhosContainer.innerHTML = "";
-
-          
-
-          // Percorre os quadradinhos e preenche com os valores da lista
-          for (var i = 0; i < lde.tamanho; i++) {
-              var valor = lde.elemento(i + 1); // +1 porque as posições da lista começam em 1
-              var quadradinho = document.createElement("div");
-              quadradinho.className = "quadradinholde";
-              quadradinhosContainer.appendChild(quadradinho);
-              if(i != lde.tamanho - 1) {
-              var seta = document.createElement("div");
-              seta.className = "fas fa-exchange-alt seta";
-              quadradinhosContainer.appendChild(seta);
-              }
-
-            
-            
-              if (valor !== false) {
-                  var numero = document.createElement("span");
-                  numero.className = "numero";
-                  numero.textContent = valor;
-                  quadradinho.appendChild(numero);
-              }
-          }
-       
-      }
-
-
-
-
-      //Função de Inserção
-      function verificarCamposPreenchidosAdicao1() {
-              var valor = document.getElementById("valor-lde").value;
-              var posicao = document.getElementById("posicao-lde").value;
-
-              if (valor && posicao && !isNaN(valor) && !isNaN(posicao)) {
-                  // Se ambos os campos foram preenchidos, torne a imagem clicável
-                  document.getElementById("imagemLDE1").addEventListener("click", realizarOperacaoAdicao1);
-           
-                    
-              } else {
-                  // Se algum dos campos estiver vazio, remova o evento de clique da imagem
-                  document.getElementById("imagemLDE1").removeEventListener("click", realizarOperacaoAdicao1);
-                  
-              }
-              
-          }
-
-       // Função a ser executada quando a imagem for clicada
-       // Função a ser executada quando a imagem for clicada para adicionar um valor
-      function realizarOperacaoAdicao1() {
-          var valorInput = document.getElementById("valor-lde");
-          var posicaoInput = document.getElementById("posicao-lde");
-
-          var valor = valorInput.value;
-          var posicao = parseInt(posicaoInput.value);
-
-
-          var sucesso = lde.insere(posicao, valor);
-             if (sucesso ) {
-                  alert("Inserido com sucesso");
-                  atualizarQuadradinhos1()
-
-                  // Insira o valor no quadradinho correspondente à posição
-                  
-                  var quadradinhos = document.querySelectorAll(".quadradinholde");
-                  
-                  // Destacar o quadrado correspondente à posição
-                  var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
-                  quadradinho.classList.add("destaquelde2");
-                  
-                  // Remover o destaque após 3 segundos (3000 milissegundos)
-                  setTimeout(function () {
-                      quadradinho.classList.remove("destaquelde2");
-                  }, 1500);
-                  valorInput.value= "";
-                    posicaoInput.value = "";
-            
-
-                  // Limpe os campos de entrada após a adição
-                } else {
-                    alert("Não foi possível inserir");
-                   
-                            }
-               
-            }
-
-
-      // Adicione um ouvinte de evento para verificar os campos sempre que houver uma alteração neles
-      document.getElementById("valor-lde").addEventListener("input", verificarCamposPreenchidosAdicao1);
-      document.getElementById("posicao-lde").addEventListener("input", verificarCamposPreenchidosAdicao1);
-
-  
-          
-
-      //Função de Remoção
-      function verificarCamposPreenchidosRemocao1() {
-          var posicao = document.getElementById("posicao2-lde").value;
-
-          if (posicao) {
-              // Se ambos os campos foram preenchidos, torne a imagem clicável
-              document.getElementById("imagemLDE2").addEventListener("click", realizarOperacaoRemocao1);
-          } else {
-              // Se algum dos campos estiver vazio, remova o evento de clique da imagem
-              document.getElementById("imagemLDE2").removeEventListener("click", realizarOperacaoRemocao1);
-
-          }
-      }
-
-      // Função a ser executada quando a imagem for clicada
-      function realizarOperacaoRemocao1() {
-          posicao = parseInt(document.getElementById("posicao2-lde").value);
-          var sucesso = lde.remove(posicao);
-          if(sucesso){
-                alert("Removido com sucesso");
-                  atualizarQuadradinhos1()
-                  // Insira o valor no quadradinho correspondente à posição
-                  
-                  var quadradinhos = document.querySelectorAll(".quadradinholde");
-                  
-                  // Destacar o quadrado correspondente à posição
-                  var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
-                  quadradinho.classList.add("destaquelde3");
-                  
-                  // Remover o destaque após 3 segundos (3000 milissegundos)
-                  setTimeout(function () {
-                      quadradinho.classList.remove("destaquelde3");
-                  }, 1500);
-                  valorInput.value= "";
-                    posicaoInput.value = "";
-                    document.getElementById("posicao2-lde").value = "";
-          }
-          else{
-              alert("Não foi possível remover")
-          }
-      }
-
-      // Adicione um ouvinte de evento para verificar os campos sempre que houver uma alteração neles
-      document.getElementById("posicao2-lde").addEventListener("input", verificarCamposPreenchidosRemocao1);
-
-       // Funções de Busca
-
-
-    function verificarCamposPreenchidosBuscaPorValor1() {
-      var valor = document.getElementById("valor3-lde").value;
-      
-      if (valor) {
-          document.getElementById("imagemLDE3").addEventListener("click", realizarOperacaoBuscaPorValor1);
-          
-          
-       } else {
-            // Remove o evento se o campo não estiver preenchido
-          document.getElementById("valor3-lde").value = "";
-          document.getElementById("imagemLDE3").removeEventListener("click", realizarOperacaoBuscaPorValor1);
-        }
-
-     }
-
-  function verificarCamposPreenchidosBuscaPorPosicao1() {
-      var valor = document.getElementById("posicao3-lde").value;
-      
-      if (valor) {
-          document.getElementById("imagemLDE3").addEventListener("click", realizarOperacaoBuscaPorPosicao1);
-          
-       } else {
-            // Remove o evento se o campo não estiver preenchido
-          document.getElementById("posicao3-lde").value = "";
-          document.getElementById("imagemLDE3").removeEventListener("click", realizarOperacaoBuscaPorPosicao1);
-        }
-
-     }
-
-     function realizarOperacaoBuscaPorPosicao1() {
-      var posicao = document.getElementById("posicao3-lde").value;
-      var sucesso = lde.elemento(posicao);
-      
-      var quadradinhos = document.querySelectorAll(".quadradinholde");
-      
-      if (sucesso) {
-        //   Destacar o quadradinho correspondente à posição
-          var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
-          quadradinho.classList.add("destaquelde");
-          
-          // Remover o destaque após 1 segundo (1000 milissegundos)
-          setTimeout(function () {
-              quadradinho.classList.remove("destaquelde");
-          }, 1500);
-          
-          alert("O valor da posição procurada é: " + sucesso);
-      } else {
-          alert("Posição não encontrada.");
-      }
-      
-      document.getElementById("posicao3-lde").value = "";
-      document.getElementById("imagemLDE3").removeEventListener("click", realizarOperacaoBuscaPorPosicao1);
-  }
-   // Adicione um ouvinte de evento para verificar os campos sempre que houver uma alteração neles
-
-  document.getElementById("posicao3-lde").addEventListener("input", verificarCamposPreenchidosBuscaPorPosicao1);
-
-     function realizarOperacaoBuscaPorValor1() {
-          var valor = document.getElementById("valor3-lde").value;
-          var sucesso = lde.posicao(valor);
-          
-          var quadradinhos = document.querySelectorAll(".quadradinholde");
-          
-          if (sucesso) {
-              // Destacar o quadradinho correspondente à posição
-              var quadradinho = quadradinhos[sucesso - 1]; // -1 porque as posições da lista começam em 1
-              quadradinho.classList.add("destaquelde");
-              
-              // Remover o destaque após 3 segundos (3000 milissegundos)
-              setTimeout(function () {
-                  quadradinho.classList.remove("destaquelde");
-              }, 1500);
-              
-              alert("A posição do valor procurado é: " + sucesso);
-          } else {
-              alert("Valor não encontrado.");
-          }
-          
-          document.getElementById("valor3-lde").value = "";
-          document.getElementById("imagemLDE3").removeEventListener("click", realizarOperacaoBuscaPorValor1);
-      }
-
-      document.getElementById("valor3-lde").addEventListener("input", verificarCamposPreenchidosBuscaPorValor1);
-     
-
-       
-      
-     
-</script>
-<script>
-    var lse = new LSE();
-
-     // Função para atualizar os quadradinhos com base na lista
-     function atualizarQuadradinhos2() {
-            var quadradinhosContainer = document.getElementById("quadradinhos-container-lse");
-            quadradinhosContainer.innerHTML = "";
-
-            // Percorre os quadradinhos e preenche com os valores da lista
-            for (var i = 0; i < lse.nElementos; i++) {
-                    var quadradinho = document.createElement("div");
-                    quadradinho.className = "quadradinholse";
-                    quadradinhosContainer.appendChild(quadradinho);
-
-                    // Adicione uma seta entre os quadradinhos, exceto no último
-                    if (i !== lse.nElementos - 1) {
-                        var seta2 = document.createElement("div");
-                        seta2.className = "fas fa-arrow-right seta2";
-                        quadradinhosContainer.appendChild(seta2);
-                    }
-
-                    var valorQuadradinho = lse.elemento(i + 1); // +1 porque as posições da lista começam em 1
-                    if (valorQuadradinho !== false) {
-                        var numero = document.createElement("span");
-                        numero.className = "numero";
-                        numero.textContent = valorQuadradinho;
-                        quadradinho.appendChild(numero);
-                    }
-                }
-     
-}
-
- function verificarCamposPreenchidosAdicao2() {
-          var valor = document.getElementById("valor-lse").value;
-          var posicao = document.getElementById("posicao-lse").value;
-
-          if (valor && posicao && !isNaN(valor) && !isNaN(posicao)) {
-              // Se ambos os campos foram preenchidos, torne a imagem clicável
-              document.getElementById("imagemsLSE1").addEventListener("click", realizarOperacaoAdicao2);
-   
-
-          }else{
-            // Se algum dos campos estiver vazio, remova o evento de clique da imagem
-            document.getElementById("imagemLDE1").removeEventListener("click", realizarOperacaoAdicao1);
-                  
-          }
-          
-      }
-
-      function realizarOperacaoAdicao2() {
-            var valorInput = document.getElementById("valor-lse");
-            var posicaoInput = document.getElementById("posicao-lse");
-
-            var valor = valorInput.value;
-            var posicao = parseInt(posicaoInput.value);
-
-            if (!valor || !posicao || isNaN(valor) || isNaN(posicao)) {
-                alert("Preencha os campos corretamente antes de clicar na imagem.");
-                return; // Encerrar a função se os campos não estiverem preenchidos corretamente
-            }
-
-
-            var sucesso = lse.insere(posicao, valor);
-
-            if (sucesso) {
-                // Atualiza visualmente os quadradinhos com base na lista
-                alert("Inserido com sucesso");
-                atualizarQuadradinhos2();
-
-                // Seleciona o contêiner de quadradinhos
-                var quadradinhosContainer = document.getElementById("quadradinhos-container-lse");
-
-                // Remove todos os quadradinhos existentes
-                quadradinhosContainer.innerHTML = "";
-
-
-                // Crie um número específico de quadradinhos com base no tamanho da lista
-                for (var i = 0; i < lse.nElementos; i++) {
-                    var quadradinho = document.createElement("div");
-                    quadradinho.className = "quadradinholse";
-                    quadradinhosContainer.appendChild(quadradinho);
-
-                    // Adicione uma seta entre os quadradinhos, exceto no último
-                    if (i !== lse.nElementos- 1) {
-                    var seta2 = document.createElement("div");
-                    seta2.className = "fas fa-arrow-right seta2";
-                    quadradinhosContainer.appendChild(seta2);
-                    }
-
-                    var valorQuadradinho = lse.elemento(i + 1); // +1 porque as posições da lista começam em 1
-                    if (valorQuadradinho !== false) {
-                        var numero = document.createElement("span");
-                        numero.className = "numero";
-                        numero.textContent = valorQuadradinho;
-                        quadradinho.appendChild(numero);
-                    }
-                }
-
-                // Seleciona todos os quadradinhos
-                var quadradinhos = document.querySelectorAll(".quadradinholse");
-
-                // Verifica se a posição é válida
-                if (posicao > 0 && posicao <= quadradinhos.length) {
-                    // Destaca o quadrado correspondente à posição
-                    var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
-
-                    // Verifica se o elemento foi encontrado
-                    if (quadradinho) {
-                        quadradinho.classList.add("destaquelse2");
-
-                        // Remove o destaque após 1,5 segundos (1500 milissegundos)
-                        setTimeout(function () {
-                            quadradinho.classList.remove("destaquelse2");
-                        }, 1500);
-                    } else {
-                        console.error("Elemento não encontrado para a posição", posicao);
-                    }
-                } else {
-                    console.error("Posição inválida:", posicao);
-                }
-
-                // Limpa os campos de entrada após a adição
-                valorInput.value= "";
-                posicaoInput.value = "";
-                
-            } else {
-                alert("Não foi possível inserir");
-                valorInput.value= "";
-                posicaoInput.value = "";
-            
-            }
-}
-
-
-
-  // Adicione um ouvinte de evento para verificar os campos sempre que houver uma alteração neles
-  document.getElementById("valor-lse").addEventListener("input", verificarCamposPreenchidosAdicao2);
-  document.getElementById("posicao-lse").addEventListener("input", verificarCamposPreenchidosAdicao2);
-
-  function verificarCamposPreenchidosRemocao2() {
-      var posicao = document.getElementById("posicao2-lse").value;
-
-      if (posicao) {
-          // Se ambos os campos foram preenchidos, torne a imagem clicável
-          document.getElementById("imagemsLSE2").addEventListener("click", realizarOperacaoRemocao2);
-      } else {
-          // Se algum dos campos estiver vazio, remova o evento de clique da imagem
-          //document.getElementById("valor-lse").value = "";
-          //document.getElementById("posicao-lse").value = "";
-          document.getElementById("imagemsLSE2").removeEventListener("click", realizarOperacaoRemocao2);
-      }
-  }
-
-  function realizarOperacaoRemocao2() {
-          posicao = parseInt(document.getElementById("posicao2-lse").value);
-          var sucesso = lse.remove(posicao);
-          if(sucesso){
-                alert("Removido com sucesso");
-                  atualizarQuadradinhos2()
-                  // Insira o valor no quadradinho correspondente à posição
-                  
-                  var quadradinhos = document.querySelectorAll(".quadradinholse");
-                  
-                  // Destacar o quadrado correspondente à posição
-                  var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
-                  quadradinho.classList.add("destaquelse3");
-                  
-                  // Remover o destaque após 3 segundos (3000 milissegundos)
-                  setTimeout(function () {
-                      quadradinho.classList.remove("destaquelse3");
-                  }, 1500);
-                  valorInput.value= "";
-                    posicaoInput.value = "";
-                    document.getElementById("posicao2-lse").value = "";
-          }
-          else{
-              alert("Não foi possível remover")
-          }
-      }
-
-  // Adicione um ouvinte de evento para verificar os campos sempre que houver uma alteração neles
-  document.getElementById("posicao2-lse").addEventListener("input", verificarCamposPreenchidosRemocao2);
-
-  function verificarCamposPreenchidosBuscaPorValor2() {
-      var valor = document.getElementById("valor3-lse").value;
-      
-      if (valor) {
-          document.getElementById("imagemsLSE3").addEventListener("click", realizarOperacaoBuscaPorValor2);
-          
-          
-       } else {
-            // Remove o evento se o campo não estiver preenchido
-          document.getElementById("valor3-lse").value = "";
-          document.getElementById("imagemsLS3").removeEventListener("click", realizarOperacaoBuscaPorValor2);
-        }
-
-     }
-
-  function verificarCamposPreenchidosBuscaPorPosicao2() {
-      var valor = document.getElementById("posicao3-lse").value;
-      
-      if (valor) {
-          document.getElementById("imagemsLSE3").addEventListener("click", realizarOperacaoBuscaPorPosicao2);
-          
-       } else {
-            // Remove o evento se o campo não estiver preenchido
-          document.getElementById("valor3-lse").value = "";
-          document.getElementById("imagemsLSE3").removeEventListener("click", realizarOperacaoBuscaPorPosicao2);
-        }
-
-     }
-
-     function realizarOperacaoBuscaPorPosicao2() {
-      var posicao = document.getElementById("posicao3-lse").value;
-      var sucesso = lse.elemento(posicao);
-      
-      var quadradinhos = document.querySelectorAll(".quadradinholse");
-      
-      if (sucesso !== false) {
-        //   Destacar o quadradinho correspondente à posição
-          var quadradinho = quadradinhos[posicao - 1]; // -1 porque as posições da lista começam em 1
-          quadradinho.classList.add("destaquelse");
-          
-          // Remover o destaque após 1 segundo (1000 milissegundos)
-          setTimeout(function () {
-              quadradinho.classList.remove("destaquelse");
-          }, 1500);
-          
-          alert("O valor da posição procurada é: " + sucesso);
-      } else {
-          alert("Posição não encontrada.");
-      }
-      
-      document.getElementById("posicao3-lse").value = "";
-      document.getElementById("imagemsLSE3").removeEventListener("click", realizarOperacaoBuscaPorPosicao2);
-  }
-   // Adicione um ouvinte de evento para verificar os campos sempre que houver uma alteração neles
-
-  document.getElementById("posicao3-lse").addEventListener("input", verificarCamposPreenchidosBuscaPorPosicao2);
-
-     function realizarOperacaoBuscaPorValor2() {
-          var valor = document.getElementById("valor3-lse").value;
-          var sucesso = lse.posicao(valor);
-          
-          var quadradinhos = document.querySelectorAll(".quadradinholse");
-          
-          if (sucesso !== false) {
-              // Destacar o quadradinho correspondente à posição
-              var quadradinho = quadradinhos[sucesso - 1]; // -1 porque as posições da lista começam em 1
-              quadradinho.classList.add("destaquelse");
-              
-              // Remover o destaque após 3 segundos (3000 milissegundos)
-              setTimeout(function () {
-                  quadradinho.classList.remove("destaquelse");
-              }, 1500);
-              
-              alert("A posição do valor procurado é: " + sucesso);
-          } else {
-              alert("Valor não encontrado.");
-          }
-          
-          document.getElementById("valor3-lse").value = "";
-          document.getElementById("imagemsLSE3").removeEventListener("click", realizarOperacaoBuscaPorValor2);
-      }
-
-      document.getElementById("valor3-lse").addEventListener("input", verificarCamposPreenchidosBuscaPorValor2);
-     
-
-</script>
+    <script src="assets/js/ListaSeqImp.js"></script>
+    <script src="assets/js/LDEImp.js"></script>
+    <script src="assets/js/LSEImp.js"></script>
+    <script src="assets/js/Pilha.js"></script>
+    <script src="assets/js/PilhaImp.js"></script>
+    <script src="assets/js/Fila.js"></script>
+    <script src="assets/js/FilaImp.js"></script>
 
 </body>
 </html>

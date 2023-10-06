@@ -153,15 +153,15 @@ nav {
 .lista-conceitos {
   list-style: none;
   padding: 0;
-  margin-top: 150px;
+  margin-top: 100px;
 }
 
 .lista-conceitos li {
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 }
 
 .lista-conceitos a {
-  font-size: 20px;
+  font-size: 18px;
   color: #fff;
   text-decoration: none;
   transition: color 0.3s;
