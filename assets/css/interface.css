@@ -356,33 +356,42 @@ nav {
   border-radius: 5px;
 }
 
+.quadradinhos-container-abp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
 
 .abp-container {
   display: flex;
-  flex-direction: row;
-}
-
-.abp-tree {
-  margin: 0 10px;
+  position: absolute;
+  min-width: 100vh;
+  top: 15%;
+  justify-content: center;
+  transform: translate(-50%, -50%);
 }
 
 .abp-node {
-  width: 80px;
-  height: 80px;
-  background-color: #6B5B95;
-  margin: 0 2px auto; /* Adicione margens para separação vertical entre os quadradinhos */
-  position: relative;
-  border: 0.5px solid #fff; /* Adicione uma borda para separar os quadradinhos */
-  border-radius: 5px;
-}
-
-.abp-subtree {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #6B5B95;
+  position: absolute;
+  border-radius: 50%; /* Use um círculo em vez de um quadrado para os nós */
 }
 
-
+.abp-line {
+    position: absolute;
+    background-color: transparent;
+    border-bottom: none; /* Remova a parte inferior da borda */
+    width: 0; /* Largura inicial de 0 */
+    height: 0; /* Altura inicial de 0 */
+    z-index: -1; /* Coloque as linhas atrás dos nós */
+}
 
 .numero{
 position: absolute;

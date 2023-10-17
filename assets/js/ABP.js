@@ -159,5 +159,6 @@ class ABP {
   
     removeNo(valor) {
       this.raiz = this.remove(this.raiz, valor);
+      return true;
     }
   }
