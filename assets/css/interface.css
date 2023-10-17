@@ -222,7 +222,7 @@ nav {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.conteudo-central .conceito .menu-interface, .conteudo-central .conceito .menu-interface-pilha{
+.conteudo-central .conceito .menu-interface, .conteudo-central .conceito .menu-interface-pilha, .conteudo-central .conceito .menu-interface-abp{
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -238,6 +238,10 @@ nav {
   margin-right: 4.5%; /* Ajuste a margem conforme necessário */
 }
 
+.conteudo-central .conceito .menu-interface-abp > *:not(:last-child) {
+  margin-right: 1.5%; /* Ajuste a margem conforme necessário */
+}
+
 .conteudo-central .conceito .menu-interface .tamanho-lista, .conteudo-central .conceito .menu-interface-pilha .tamanho-lista {
   display: flex;
   flex-direction: column;
@@ -245,27 +249,27 @@ nav {
   
 }
 
-.conteudo-central .conceito .menu-interface .funcoes-interface, .conteudo-central .conceito .menu-interface-pilha .funcoes-interface {
+.conteudo-central .conceito .menu-interface .funcoes-interface, .conteudo-central .conceito .menu-interface-pilha .funcoes-interface, .conteudo-central .conceito .menu-interface-abp .funcoes-interface {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   max-width: max-content;
 } 
 
-#minhaImagem, #imagemLDE1, #imagemsLSE1, #ImagemPilha1, #ImagemFila1{
+#minhaImagem, #imagemLDE1, #imagemsLSE1, #ImagemPilha1, #ImagemFila1, #ImagemABP1{
   width: 100px;
   height: 100px;
   object-fit: cover;
 }
 
-#minhaImagem2, #imagemLDE2 , #imagemsLSE2, #ImagemPilha2, #ImagemFila2{
+#minhaImagem2, #imagemLDE2 , #imagemsLSE2, #ImagemPilha2, #ImagemFila2, #ImagemABP2{
   width:100px;
   height:100px;
   object-fit: cover;
   
 }
 
-#minhaImagem3, #imagemLDE3, #imagemsLSE3, #ImagemPilha3, #ImagemFila3{
+#minhaImagem3, #imagemLDE3, #imagemsLSE3, #ImagemPilha3, #ImagemFila3, #ImagemABP3, #ImagemABP4{
   width:100px;
   height:100px;
   object-fit: cover;
@@ -351,6 +355,33 @@ nav {
   border: 0.5px solid #fff; /* Adicione uma borda para separar os quadradinhos */
   border-radius: 5px;
 }
+
+
+.abp-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.abp-tree {
+  margin: 0 10px;
+}
+
+.abp-node {
+  width: 80px;
+  height: 80px;
+  background-color: #6B5B95;
+  margin: 0 2px auto; /* Adicione margens para separação vertical entre os quadradinhos */
+  position: relative;
+  border: 0.5px solid #fff; /* Adicione uma borda para separar os quadradinhos */
+  border-radius: 5px;
+}
+
+.abp-subtree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 
 .numero{
