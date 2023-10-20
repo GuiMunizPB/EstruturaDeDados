@@ -1,11 +1,23 @@
 var abp = new ABP();
 
-function criarVisualizacaoABP(node, x, y, nivel, distanciaEntreNiveis, direction, altura) {
+function criarVisualizacaoABP(node, x, y, nivel, distanciaEntreNiveis, distanciaEntreNiveisPai, direction, altura) {
+    // ...
     if (node !== null) {
         var nodeDiv = document.createElement("div");
         nodeDiv.className = "abp-node";
         nodeDiv.textContent = node.getConteudo();
-        nodeDiv.style.left = x + "px";
+
+        // Calcule o tamanho do nó com base no nível
+        var tamanhoNodo = 60 - (nivel * 4); // Ajuste o fator multiplicador conforme necessário
+        nodeDiv.style.width = tamanhoNodo + "px";
+        nodeDiv.style.height = tamanhoNodo + "px";
+        nodeDiv.style.color = "white"; // Define a fonte como branca
+
+        // Ajuste o tamanho da fonte com base no tamanho do nó
+        var tamanhoFonte = Math.min(20, tamanhoNodo / 2); // Ajuste o tamanho da fonte máximo (20) conforme necessário
+        nodeDiv.style.fontSize = tamanhoFonte + "px";
+
+        nodeDiv.style.left = x - tamanhoNodo / 2 + "px";
         nodeDiv.style.top = y + "px";
 
         document.getElementById("abp-container").appendChild(nodeDiv);
@@ -16,55 +28,46 @@ function criarVisualizacaoABP(node, x, y, nivel, distanciaEntreNiveis, direction
         if (node.getEsq() !== null) {
             var esqX, esqY;
 
-            if (nivel === 1) {
-                // Desloque para a esquerda ao adicionar na subárvore esquerda
-                esqX = x - subArvoreEsqWidth * 2; // Ajuste o fator multiplicador conforme necessário
-            } else {
-                // Espaçamento padrão para os filhos subsequentes
-                esqX = x - subArvoreEsqWidth * 1.5; // Ajuste o fator multiplicador apenas para os filhos subsequentes
-            }
+            // Certifique-se de que os nós filhos não cruzem a linha vertical imaginária
+           
+            esqX = (x) - (subArvoreEsqWidth / 3) * (1 / nivel);
+            
+            
 
             esqY = y + 100;
 
-            criarVisualizacaoABP(node.getEsq(), esqX, esqY, nivel + 1, distanciaEntreNiveis, "esquerda", altura);
+            criarVisualizacaoABP(node.getEsq(), esqX, esqY, nivel + 1, distanciaEntreNiveis, distanciaEntreNiveis, "esquerda", altura);
 
-            // Desenhar uma linha para o filho esquerdo
+
             var line = document.createElement("div");
             line.className = "abp-line";
-            line.style.left = x - (subArvoreEsqWidth / 2) + "px";
-            line.style.top = (y + esqY - 30) + "px";
-            line.style.width = subArvoreEsqWidth + "px";
-            line.style.height = "60px"; // Ajuste a altura da linha conforme necessário
+            line.style.left = x + "px";
+            line.style.top = y + tamanhoNodo / 2 + "px";
+            line.style.width = "2px";
+            line.style.height = esqY - y - tamanhoNodo / 2 + "px";
             document.getElementById("abp-container").appendChild(line);
         }
 
         if (node.getDir() !== null) {
             var dirX, dirY;
 
-            if (nivel === 1) {
-                // Desloque para a direita ao adicionar na subárvore direita
-                dirX = x + subArvoreDirWidth * 2; // Ajuste o fator multiplicador conforme necessário
-            } else {
-                // Espaçamento padrão para os filhos subsequentes
-                dirX = x + subArvoreDirWidth * 1.5; // Ajuste o fator multiplicador apenas para os filhos subsequentes
-            }
+            dirX = (x) + (subArvoreDirWidth / 3) * (1 / nivel);
+            
 
             dirY = y + 100;
 
-            criarVisualizacaoABP(node.getDir(), dirX, dirY, nivel + 1, distanciaEntreNiveis, "direita", altura);
+            criarVisualizacaoABP(node.getDir(), dirX, dirY, nivel + 1, distanciaEntreNiveis, distanciaEntreNiveis, "direita", altura);
 
-            // Desenhar uma linha para o filho direito
             var line = document.createElement("div");
             line.className = "abp-line";
-            line.style.left = x + (subArvoreDirWidth / 2) + "px";
-            line.style.top = (y + dirY - 30) + "px";
-            line.style.width = subArvoreDirWidth + "px";
-            line.style.height = "60px"; // Ajuste a altura da linha conforme necessário
+            line.style.left = x + "px";
+            line.style.top = y + tamanhoNodo / 2 + "px";
+            line.style.width = "2px";
+            line.style.height = dirY - y - tamanhoNodo / 2 + "px";
             document.getElementById("abp-container").appendChild(line);
         }
     }
 }
-
 
 
 function calcularLarguraSubArvore(node, distanciaEntreNiveis) {
@@ -85,12 +88,12 @@ function atualizarArvoreABP() {
 
     // Chame uma função para calcular a altura da árvore
     var altura = calcularAltura(abp.raiz);
-    
+
     // Chame uma função para calcular a distância entre os níveis
     var distanciaEntreNiveis = altura * 40;
 
     if (abp.raiz !== null) {
-        criarVisualizacaoABP(abp.raiz, abpContainer.clientWidth / 2, 50, 1, distanciaEntreNiveis, "", altura);
+        criarVisualizacaoABP(abp.raiz, abpContainer.clientWidth / 2, 50, 1, distanciaEntreNiveis, distanciaEntreNiveis, "", altura);
     }
 }
 
@@ -161,4 +164,46 @@ function removeDaABP() {
     } else {
         alert("O valor não existe na árvore.");
     }
+}
+
+
+
+
+
+
+var container = document.getElementById("quadradinhos-container-abp");
+var isDragging = false;
+var initialMouseX, initialContainerLeft;
+var zoomLevel = 1.0;
+
+container.addEventListener("mousedown", function (e) {
+    if (e.ctrlKey) {
+        // Zoom in
+        zoomLevel *= 1.1;
+        applyZoomAndPan();
+    } else if (e.shiftKey) {
+        // Zoom out
+        zoomLevel *= 0.9;
+        applyZoomAndPan();
+    } else {
+        // Start dragging (pan)
+        isDragging = true;
+        initialMouseX = e.clientX;
+        initialContainerLeft = parseFloat(getComputedStyle(container).left);
+    }
+});
+
+document.addEventListener("mousemove", function (e) {
+    if (isDragging) {
+        var dx = e.clientX - initialMouseX;
+        container.style.left = initialContainerLeft + dx + "px";
+    }
+});
+
+document.addEventListener("mouseup", function () {
+    isDragging = false;
+});
+
+function applyZoomAndPan() {
+    container.style.transform = `scale(${zoomLevel})`;
 }
