@@ -388,12 +388,13 @@ nav {
 
 .abp-line {
     position: absolute;
-    background-color: transparent;
+    background-color: #00BFFF;
     border-bottom: none; /* Remova a parte inferior da borda */
     width: 0; /* Largura inicial de 0 */
     height: 0; /* Altura inicial de 0 */
     z-index: -1; /* Coloque as linhas atrás dos nós */
 }
+
 
 .numero{
 position: absolute;
