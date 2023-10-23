@@ -1,7 +1,7 @@
 var abp = new ABP();
 
-function criarVisualizacaoABP(node, x, y, nivel, distanciaEntreNiveis, distanciaEntreNiveisPai, direction, altura) {
-    // ...
+function criarVisualizacaoABP(node, x, y, nivel, distanciaEntreNiveis, distanciaEntreNiveisPai, direction, altura ) {
+
     if (node !== null) {
         var nodeDiv = document.createElement("div");
         nodeDiv.className = "abp-node";
@@ -21,6 +21,7 @@ function criarVisualizacaoABP(node, x, y, nivel, distanciaEntreNiveis, distancia
         nodeDiv.style.top = y + "px";
 
         document.getElementById("abp-container").appendChild(nodeDiv);
+
 
         var subArvoreEsqWidth = calcularLarguraSubArvore(node.getEsq(), distanciaEntreNiveis);
         var subArvoreDirWidth = calcularLarguraSubArvore(node.getDir(), distanciaEntreNiveis);
@@ -123,26 +124,48 @@ function insereNaABP() {
     var valorInput = document.getElementById("valor1-abp");
     var valor = valorInput.value;
 
-    // Use parseFloat para converter o valor em um número
     var numero = parseFloat(valor);
 
     if (isNaN(numero)) {
         alert("Preencha os campos corretamente (valor numérico)");
-        return; // Encerrar a função se os campos não estiverem preenchidos corretamente
+        return;
     }
 
-    // Adicione o valor à árvore binária de pesquisa
     var sucesso = abp.insere(numero);
 
     if (sucesso) {
-        // Atualize visualmente a exibição da árvore binária de pesquisa
+
         atualizarArvoreABP();
-        // Limpe o campo de entrada
         valorInput.value = "";
+
+        // Encontre o nó visual que corresponde ao valor inserido
+       // Encontre o nó visual que corresponde ao valor inserido
+var nodeDivs = document.querySelectorAll(".abp-node");
+
+for (var i = 0; i < nodeDivs.length; i++) {
+    var nodeValue = parseFloat(nodeDivs[i].textContent); // Converter para número
+    if (!isNaN(nodeValue) && nodeValue === parseFloat(numero)) {
+        var nodeDiv = nodeDivs[i];
+        nodeDiv.style.backgroundColor = "#3CB371"; // Defina a cor de fundo para verde
+
+        // Adicione uma classe temporária
+        nodeDiv.classList.add("temporary-green-background");
+
+        // Remova a classe temporária após um período de tempo (por exemplo, 2 segundos)
+        setTimeout(function () {
+            nodeDiv.style.backgroundColor = ""; // Restaure o fundo original
+            nodeDiv.classList.remove("temporary-green-background");
+        }, 800); // 2000 milissegundos = 2 segundos
+    }
+}
+
+
     } else {
         alert("O valor já existe na árvore.");
     }
 }
+
+
 
 function removeDaABP() {
     var valorInput = document.getElementById("valor2-abp");
@@ -154,17 +177,41 @@ function removeDaABP() {
     }
 
     var sucesso = abp.removeNo(valor);
-    alert(sucesso);
-    if (sucesso) {
-        // Atualize visualmente a exibição da árvore binária de pesquisa
-        atualizarArvoreABP();
 
-        // Limpe o campo de entrada
+    if (sucesso) {
+        var nodeDivs = document.querySelectorAll(".abp-node");
+
+        for (var i = 0; i < nodeDivs.length; i++) {
+            var nodeValue = parseFloat(nodeDivs[i].textContent); // Converter para número
+            if (!isNaN(nodeValue) && nodeValue === parseFloat(valor)) {
+                var nodeDiv = nodeDivs[i];
+
+                
+                // Destaque o nó em vermelho
+                nodeDiv.style.backgroundColor = "#B22222";
+    
+                // Adicione uma classe temporária
+                nodeDiv.classList.add("temporary-red-background");
+    
+                // Adicione um atraso de 2 segundos antes da remoção
+                setTimeout(function () {
+                    // Remova o nó da visualização
+                    nodeDiv.parentNode.removeChild(nodeDiv);
+    
+                    // Atualize a árvore sem o nó removido
+                    atualizarArvoreABP();
+                }, 800); // 2000 milissegundos = 2 segundos
+            }
+        }
+    
+        // Nota: Não é necessário verificar sucesso aqui, pois o nó será removido da visualização após o atraso.
+    
         valorInput.value = "";
     } else {
         alert("O valor não existe na árvore.");
     }
 }
+
 
 
 

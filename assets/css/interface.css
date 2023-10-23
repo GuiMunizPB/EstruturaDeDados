@@ -364,6 +364,16 @@ nav {
   width: 100vw;
   position: relative;
 }
+.abp-nodo-inserido {
+  background-color: green;
+}
+
+.abp-nodo-inserido2 {
+  background-color: red;
+}
+
+
+
 
 .abp-container {
   top: 50%;
@@ -415,6 +425,51 @@ background-color:#3CB371;
 }
 .destaque3 , .destaquelse3,  .destaquelde3 {
 background-color: #B22222;
+}
+
+.quadradinhos-container-abp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+.abp-nodo-inserido {
+  background-color:#3CB371;}
+  .abp-nodo-inserido2 {
+    background-color: red;
+  }
+
+
+.abp-container {
+  top: 50%;
+  left: 40%;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100vh; /* Ajuste a altura conforme necessário */
+  position: relative;
+}
+
+.abp-node {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #6B5B95;
+  position: absolute;
+  border-radius: 50%; /* Use um círculo em vez de um quadrado para os nós */
+}
+
+.abp-line {
+    position: absolute;
+    background-color: #00BFFF;
+    border-bottom: none; /* Remova a parte inferior da borda */
+    width: 0; /* Largura inicial de 0 */
+    height: 0; /* Altura inicial de 0 */
+    z-index: -1; /* Coloque as linhas atrás dos nós */
 }
 
 /* Classe de animação de remoção */
@@ -524,6 +579,52 @@ background-color: #B22222;
   }
   .destaque3 , .destaquelse3,  .destaquelde3, .destaque3pilha, .destaque3fila{
   background-color: #B22222;
+  }
+
+  .quadradinhos-container-abp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+  }
+  .abp-nodo-inserido {
+    background-color: green;
+  }
+  .abp-nodo-inserido2 {
+    background-color: red;
+  }
+  
+  
+  .abp-container {
+    top: 50%;
+    left: 40%;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100vh; /* Ajuste a altura conforme necessário */
+    position: relative;
+  }
+  
+  .abp-node {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: #6B5B95;
+    position: absolute;
+    border-radius: 50%; /* Use um círculo em vez de um quadrado para os nós */
+  }
+  
+  .abp-line {
+      position: absolute;
+      background-color: #00BFFF;
+      border-bottom: none; /* Remova a parte inferior da borda */
+      width: 0; /* Largura inicial de 0 */
+      height: 0; /* Altura inicial de 0 */
+      z-index: -1; /* Coloque as linhas atrás dos nós */
   }
 }
 
@@ -674,6 +775,53 @@ font-weight: bold;
   .destaque3 , .destaquelse3,  .destaquelde3, .destaque3pilha, .destaque3fila{
   background-color: #B22222;
   }
+
+  .quadradinhos-container-abp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+  }
+  .abp-nodo-inserido {
+    background-color: green;
+  }
+  .abp-nodo-inserido2 {
+    background-color: red;
+  }
+  
+  
+  
+  .abp-container {
+    top: 50%;
+    left: 40%;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100vh; /* Ajuste a altura conforme necessário */
+    position: relative;
+  }
+  
+  .abp-node {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: #6B5B95;
+    position: absolute;
+    border-radius: 50%; /* Use um círculo em vez de um quadrado para os nós */
+  }
+  
+  .abp-line {
+      position: absolute;
+      background-color: #00BFFF;
+      border-bottom: none; /* Remova a parte inferior da borda */
+      width: 0; /* Largura inicial de 0 */
+      height: 0; /* Altura inicial de 0 */
+      z-index: -1; /* Coloque as linhas atrás dos nós */
+  }
 }
 
 @media (max-width: 1450px) {
@@ -752,6 +900,53 @@ font-weight: bold;
   .destaque3 , .destaquelse3,  .destaquelde3, .destaque3pilha, .destaque3fila{
   background-color: #B22222;
   }
+
+  .quadradinhos-container-abp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+  }
+  .abp-nodo-inserido {
+    background-color: green;
+  }
+  .abp-nodo-inserido2 {
+    background-color: red;
+  }
+  
+  
+  
+  .abp-container {
+    top: 50%;
+    left: 40%;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100vh; /* Ajuste a altura conforme necessário */
+    position: relative;
+  }
+  
+  .abp-node {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: #6B5B95;
+    position: absolute;
+    border-radius: 50%; /* Use um círculo em vez de um quadrado para os nós */
+  }
+  
+  .abp-line {
+      position: absolute;
+      background-color: #00BFFF;
+      border-bottom: none; /* Remova a parte inferior da borda */
+      width: 0; /* Largura inicial de 0 */
+      height: 0; /* Altura inicial de 0 */
+      z-index: -1; /* Coloque as linhas atrás dos nós */
+  }
 }
 
 @media (min-width: 1800px) {
@@ -828,6 +1023,53 @@ font-weight: bold;
   }
   .destaque3 , .destaquelse3,  .destaquelde3, .destaque3pilha, .destaque3fila{
   background-color: #B22222;
+  }
+
+  .quadradinhos-container-abp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+  }
+  .abp-nodo-inserido {
+    background-color: green;
+  }
+  .abp-nodo-inserido2 {
+    background-color: red;
+  }
+  
+  
+  
+  .abp-container {
+    top: 50%;
+    left: 40%;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100vh; /* Ajuste a altura conforme necessário */
+    position: relative;
+  }
+  
+  .abp-node {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: #6B5B95;
+    position: absolute;
+    border-radius: 50%; /* Use um círculo em vez de um quadrado para os nós */
+  }
+  
+  .abp-line {
+      position: absolute;
+      background-color: #00BFFF;
+      border-bottom: none; /* Remova a parte inferior da borda */
+      width: 0; /* Largura inicial de 0 */
+      height: 0; /* Altura inicial de 0 */
+      z-index: -1; /* Coloque as linhas atrás dos nós */
   }
   
 }
