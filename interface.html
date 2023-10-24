@@ -234,7 +234,13 @@
                             <div class="tamanho-lista">
                                 <label for="tamanhoLista">Encaminhamento:</label>
                                 <br>
-                                <button onclick="primeiroDaFila()">Consultar</button>
+                                <select id="opcoes">
+                                    <option value="opcao1">Pré-Ordem </option>
+                                    <option value="opcao2">In-Ordem </option>
+                                    <option value="opcao3">Pós-Ordem </option>
+                                  </select>
+                                  
+                                  <button onclick="executarOpcao()">Selecionar</button>
                             </div>
 
                             <img  id="ImagemABP4" src="assets/imgs/magnifying-glass.png" alt="Imagem">
