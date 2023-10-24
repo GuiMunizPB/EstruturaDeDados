@@ -212,6 +212,118 @@ function removeDaABP() {
     }
 }
 
+function pesquisaABP() {
+    var valorInput = document.getElementById("valor3-abp");
+    var valor = Number(valorInput.value);
+
+    if (isNaN(valorInput.value) || valorInput.value === "") {
+        alert("Preencha os campos corretamente (valor numérico).");
+        return; // Encerrar a função se os campos não estiverem preenchidos corretamente
+    }
+
+    if(abp.vazia()) alert("Árvore vazia. Não foi possível fazer a busca.");
+
+    var busca = abp.buscaRecursiva(valor);
+
+    if (busca !== null) {
+        var nodeDivs = document.querySelectorAll(".abp-node");
+
+        for (var i = 0; i < nodeDivs.length; i++) {
+            var nodeValue = parseFloat(nodeDivs[i].textContent); // Converter para número
+            if (!isNaN(nodeValue) && nodeValue === parseFloat(valor)) {
+                var nodeDiv = nodeDivs[i];
+
+                nodeDiv.style.backgroundColor = "#DDA0DD";
+
+                // Destaque o nó em vermelho
+                setTimeout(function () {
+                    nodeDiv.style.backgroundColor = "#6B5B95";
+                }, 1500);
+
+                break;
+                // Adicione uma classe temporária
+            }
+        }
+    }
+
+    else {
+        alert("Valor não encontrado.");
+    }
+}
+
+function executarOpcao(selecionarElemento) {
+    var opcao = selecionarElemento.value;
+
+    if(abp.vazia()) {
+        alert("Árvore vazia. Não foi possível fazer o encaminhamento.");
+    }
+    
+    if(opcao === "opcao1") caminhoPreOrdem();
+    if(opcao === "opcao2") caminhoInOrdem();
+    if(opcao === "opcao3") caminhoPosOrdem();
+ }
+
+function esperar(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function caminhoPreOrdem() {
+    var ordem = abp.exibePreOrdem();
+    var nodeDivs = document.querySelectorAll(".abp-node");
+
+    for (let j = 0; j < ordem.length; j++) {
+        for (var i = 0; i < nodeDivs.length; i++) {
+            var nodeValue = parseFloat(nodeDivs[i].textContent); // Converter para número
+            if (!isNaN(nodeValue) && nodeValue === ordem[j]) {
+                var nodeDiv = nodeDivs[i];
+                nodeDiv.style.backgroundColor = "#DDA0DD";
+
+                await esperar(2000);
+
+                nodeDiv.style.backgroundColor = "#6B5B95";
+            }
+        }
+    }
+}
+
+async function caminhoInOrdem() {
+    var ordem = abp.exibeInOrdem();
+    var nodeDivs = document.querySelectorAll(".abp-node");
+
+    for (let j = 0; j < ordem.length; j++) {
+        for (var i = 0; i < nodeDivs.length; i++) {
+            var nodeValue = parseFloat(nodeDivs[i].textContent); // Converter para número
+            if (!isNaN(nodeValue) && nodeValue === ordem[j]) {
+                var nodeDiv = nodeDivs[i];
+                nodeDiv.style.backgroundColor = "#DDA0DD";
+
+                await esperar(2000);
+
+                nodeDiv.style.backgroundColor = "#6B5B95";
+            }
+        }
+    }
+}
+
+async function caminhoPosOrdem() {
+    var ordem = abp.exibePosOrdem();
+    var nodeDivs = document.querySelectorAll(".abp-node");
+
+    for (let j = 0; j < ordem.length; j++) {
+        for (var i = 0; i < nodeDivs.length; i++) {
+            var nodeValue = parseFloat(nodeDivs[i].textContent); // Converter para número
+            if (!isNaN(nodeValue) && nodeValue === ordem[j]) {
+                var nodeDiv = nodeDivs[i];
+                nodeDiv.style.backgroundColor = "#DDA0DD";
+
+                await esperar(2000);
+
+                nodeDiv.style.backgroundColor = "#6B5B95";
+            }
+        }
+    }
+}
+
 
 
 
