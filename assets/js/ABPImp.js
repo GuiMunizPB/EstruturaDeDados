@@ -167,14 +167,20 @@ for (var i = 0; i < nodeDivs.length; i++) {
 
 function removeDaABP() {
     var valorInput = document.getElementById("valor2-abp");
-    var valor = valorInput.value;
+    var valor = Number(valorInput.value);
 
     if (isNaN(valor)) {
         alert("Preencha os campos corretamente (valor numérico)");
         return; // Encerrar a função se os campos não estiverem preenchidos corretamente
     }
 
-    var sucesso = abp.removeNo(valor);
+    var busca = abp.buscaRecursiva(valor);
+
+    if (busca !== null){
+        var sucesso = abp.removeNo(valor);}
+    else{
+        var sucesso = false;
+    }
 
     if (sucesso) {
         var nodeDivs = document.querySelectorAll(".abp-node");
@@ -248,6 +254,7 @@ function pesquisaABP() {
         alert("Valor não encontrado.");
     }
 }
+
 
 function executarOpcao(selecionarElemento) {
     var opcao = selecionarElemento.value;
