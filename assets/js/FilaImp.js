@@ -82,7 +82,6 @@ function primeiroDaFila() {
     var inicio = fila.primeiro();
     if (inicio !== -1) {
         // Exiba o valor em algum lugar da sua interface (você pode usar um alert ou atualizar um elemento HTML)
-        alert("Inicio da fila: " + fila.primeiro());
 
         var quadradinhos = document.querySelectorAll(".quadradinho-fila");
 

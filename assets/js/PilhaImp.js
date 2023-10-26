@@ -81,7 +81,7 @@ function consultarTopoPilha() {
     var topo = pilha.top();
     if (topo !== -1) {
         // Exiba o valor em algum lugar da sua interface (você pode usar um alert ou atualizar um elemento HTML)
-        alert("Topo da pilha: " + topo);
+        
 
         var quadradinhos = document.querySelectorAll(".quadradinho-pilha");
 
