@@ -396,13 +396,36 @@ nav {
   border-radius: 50%; /* Use um círculo em vez de um quadrado para os nós */
 }
 
-.abp-line {
+.abp-line-esq{
     position: absolute;
-    background-color: #00BFFF;
+    background-color: black;
     border-bottom: none; /* Remova a parte inferior da borda */
     width: 0; /* Largura inicial de 0 */
     height: 0; /* Altura inicial de 0 */
     z-index: -1; /* Coloque as linhas atrás dos nós */
+    transform: rotate(45deg);
+    margin-top: -10px;
+    margin-left: -10px;
+}
+
+.abp-line-dir{
+  position: absolute;
+  background-color: black;
+  border-bottom: none; /* Remova a parte inferior da borda */
+  width: 0; /* Largura inicial de 0 */
+  height: 0; /* Altura inicial de 0 */
+  z-index: -1; /* Coloque as linhas atrás dos nós */
+  transform: rotate(-45deg);
+  margin-top: -10px;
+  margin-left: 5px;
+}
+
+.abp-text-t {
+  position: absolute;
+  color: black; /* Cor do texto */
+  font-size: 70px; /* Tamanho da fonte */
+  transform: rotate(180deg);
+  top: 65%; /* Rotação de 180 graus para virar a letra "T" de cabeça para baixo */
 }
 
 

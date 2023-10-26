@@ -40,13 +40,12 @@ function criarVisualizacaoABP(node, x, y, nivel, distanciaEntreNiveis, distancia
             criarVisualizacaoABP(node.getEsq(), esqX, esqY, nivel + 1, distanciaEntreNiveis, distanciaEntreNiveis, "esquerda", altura);
 
 
-            var line = document.createElement("div");
-            line.className = "abp-line";
-            line.style.left = x + "px";
-            line.style.top = y + tamanhoNodo / 2 + "px";
-            line.style.width = "2px";
-            line.style.height = esqY - y - tamanhoNodo / 2 + "px";
-            document.getElementById("abp-container").appendChild(line);
+            var textT = document.createElement("div");
+            textT.className = "abp-text-t";
+            textT.innerText = "T";
+            nodeDiv.appendChild(textT);
+            document.getElementById("abp-container").appendChild(nodeDiv);
+
         }
 
         if (node.getDir() !== null) {
@@ -59,13 +58,12 @@ function criarVisualizacaoABP(node, x, y, nivel, distanciaEntreNiveis, distancia
 
             criarVisualizacaoABP(node.getDir(), dirX, dirY, nivel + 1, distanciaEntreNiveis, distanciaEntreNiveis, "direita", altura);
 
-            var line = document.createElement("div");
-            line.className = "abp-line";
-            line.style.left = x + "px";
-            line.style.top = y + tamanhoNodo / 2 + "px";
-            line.style.width = "2px";
-            line.style.height = dirY - y - tamanhoNodo / 2 + "px";
-            document.getElementById("abp-container").appendChild(line);
+            var textT = document.createElement("div");
+            textT.className = "abp-text-t";
+            textT.innerText = "T";
+            nodeDiv.appendChild(textT);
+            document.getElementById("abp-container").appendChild(nodeDiv);
+
         }
     }
 }
