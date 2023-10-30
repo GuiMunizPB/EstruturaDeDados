@@ -248,6 +248,8 @@ function pesquisaABP() {
                 // Adicione uma classe temporária
             }
         }
+
+        valorInput.value = "";
     }
 
     else {
